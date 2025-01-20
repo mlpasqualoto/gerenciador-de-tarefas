@@ -43,7 +43,7 @@
             justify-content: center;
             align-items: center;
             width: 65%;
-            height: 50%;
+            height: 60%;
             border: black 1px solid;
             border-radius: 30px;
             padding: 20px;
@@ -73,7 +73,7 @@
             outline: none;
         }
 
-        #password, #user, #confirmPassword {
+        #password, #user, #confirmPassword, #email {
             border-radius: 16px;
             padding: 7px 10px;
             border: none;
@@ -97,8 +97,10 @@
             <div id="loginBox">
                 <div id="login">
                     <form action="">
-                        <label for="user">Usuário/E-mail</label>
+                        <label for="user">Usuário</label>
                         <input type="text" name="user" id="user" required>
+                        <label for="email">E-mail</label>
+                        <input type="text" name="email" id="email" required>
                         <label for="password">Senha</label>
                         <input type="password" name="password" id="password" required>
                         <label for="password">Confirme a senha</label>
