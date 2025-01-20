@@ -1,10 +1,21 @@
-import { MongoClient } from 'mongodb';
+import { MongoClient, ServerApiVersion } from 'mongodb';
+import dotenv from 'dotenv';
 
-export default async function connectToDatabase(stringConexao) {
-    let mongoClient;
+dotenv.config();
 
+let mongoClient;
+
+export default async function connectToDatabase() {
+    const uri = `mongodb+srv://matheuspasqualoto:${process.env.DB_PASSWORD}@taskmanager.whkyz.mongodb.net/?retryWrites=true&w=majority&appName=taskManager`;
+    
     try {
-        mongoClient = new MongoClient(stringConexao);
+        mongoClient = new MongoClient(uri, {
+            serverApi: {
+                version: ServerApiVersion.v1,
+                strict: true,
+                deprecationErrors: true,
+            }
+        });
         console.log('Conectando ao cluster do banco de dados...');
 
         await mongoClient.connect();
@@ -13,6 +24,6 @@ export default async function connectToDatabase(stringConexao) {
         return mongoClient;
     } catch (error) {
         console.log('Erro ao conectar no banco de dados', error);
-        process.exit();
+        throw new Error('Não foi possível conectar ao MongoDB.');
     };
 };
