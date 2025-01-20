@@ -11,7 +11,7 @@ const routes = (app) => {
     });
 
     app.post("/register", async (req, res) => {
-        const { user, email, password } = req.body;
+        const { name, email, password } = req.body;
 
         try {
             // Conecta ao banco de dados e acessa a coleção
@@ -20,7 +20,7 @@ const routes = (app) => {
             const collection = db.collection("users"); // Nome da coleção
 
             // Insere os dados no MongoDB
-            const result = await collection.insertOne({ user, email, password });
+            const result = await collection.insertOne({ name, email, password });
             console.log("Documento inserido:", result);
 
             res.status(201).json({ message: "Usuário cadastrado com sucesso!" });

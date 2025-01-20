@@ -121,10 +121,12 @@
 
             submitBtn.addEventListener('click', (e) => {
                 e.preventDefault();
-                const user = document.getElementById('user').value;
+                const name = document.getElementById('name').value;
                 const email = document.getElementById('email').value;
                 const password = document.getElementById('password').value;
                 const confirmPassword = document.getElementById('confirmPassword').value;
+
+                console.log(name, email, password, confirmPassword);
 
                 if (password !== confirmPassword) {
                     alert('As senhas não coincidem');
@@ -137,7 +139,7 @@
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        user : user,
+                        name : name,
                         email : email,
                         password : password
                     })
