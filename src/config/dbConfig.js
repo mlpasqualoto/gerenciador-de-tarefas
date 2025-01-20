@@ -19,7 +19,7 @@ export default async function connectToDatabase() {
         console.log('Conectando ao cluster do banco de dados...');
 
         await mongoClient.connect();
-        console.log('Conectado ao MongoDB Atlas com sucesso ao banco de dados');
+        console.log('Conectado ao MongoDB Atlas com sucesso!');
 
         return mongoClient;
     } catch (error) {
