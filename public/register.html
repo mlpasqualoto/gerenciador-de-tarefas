@@ -119,14 +119,12 @@
             const submitBtn = document.getElementById('submitBtn');
             const form = document.querySelector('form');
 
-            submitBtn.addEventListener('click', (e) => {
+            submitBtn.addEventListener('click', async (e) => {
                 e.preventDefault();
                 const name = document.getElementById('name').value;
                 const email = document.getElementById('email').value;
                 const password = document.getElementById('password').value;
                 const confirmPassword = document.getElementById('confirmPassword').value;
-
-                console.log(name, email, password, confirmPassword);
 
                 if (password !== confirmPassword) {
                     alert('As senhas não coincidem');
@@ -150,6 +148,7 @@
                         alert(data.error);
                     } else {
                         alert(data.message);
+                        window.location.href = "login.html";
                     }
                 })
                 .catch(err => {
