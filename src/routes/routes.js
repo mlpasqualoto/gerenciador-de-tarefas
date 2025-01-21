@@ -2,7 +2,6 @@ import express from "express";
 import connectToDatabase from "../config/dbConfig.js";
 
 const routes = (app) => {
-    connectToDatabase();
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
 
