@@ -126,6 +126,11 @@ main {
     background-color: burlywood;
 }
 
+.task:hover {
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
 .task input[type="checkbox"] {
     /* Remove os estilos padrão */
     -webkit-appearance: none;

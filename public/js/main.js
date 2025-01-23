@@ -37,17 +37,36 @@ document.addEventListener('DOMContentLoaded', () => {
         taskBox.appendChild(inputTask);
         tasksBox.appendChild(taskBox);
 
+        tasksBox.prepend(taskBox);
+
+        inputTask.focus();
+
         const okTaskBtn = document.createElement('button');
-        okTaskBtn.type = 'submit';
         okTaskBtn.textContent = 'OK';
         taskBox.appendChild(okTaskBtn);
 
         okTaskBtn.addEventListener('click', () => {
             inputTask.readOnly = true;
+            inputTask.style.cursor = 'pointer';
 
             okTaskBtn.remove();
+            removeTaskBtn.style.display = 'none';
         });
-    }
+
+        inputTask.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                okTaskBtn.click();
+            };
+        });
+
+        const removeTaskBtn = document.createElement('button');
+        removeTaskBtn.textContent = 'X';
+        taskBox.appendChild(removeTaskBtn);
+
+        removeTaskBtn.addEventListener('click', () => {
+            taskBox.remove();
+        });
+    };
 
     const addTaskButton = document.getElementById('addTask');
 
