@@ -169,6 +169,14 @@ main {
     border-color: #555;
 }
 
+#taskInput, .taskInput {
+    margin: 10px 0;
+    width: 100%;
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
+
 p {
     width: 100%;
     padding: 10px 0;

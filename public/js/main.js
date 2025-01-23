@@ -17,4 +17,41 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    function addTask() {
+        const tasksBox = document.getElementById('tasks');
+
+        const taskBox = document.createElement('div');
+        taskBox.classList.add('task');
+
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+
+        const inputTask = document.createElement('input');
+        inputTask.classList.add('taskInput');
+        inputTask.type = 'text';
+        inputTask.placeholder = 'Nova tarefa';
+        inputTask.autocomplete = 'none';
+
+        taskBox.appendChild(checkbox);
+        taskBox.appendChild(inputTask);
+        tasksBox.appendChild(taskBox);
+
+        const okTaskBtn = document.createElement('button');
+        okTaskBtn.type = 'submit';
+        okTaskBtn.textContent = 'OK';
+        taskBox.appendChild(okTaskBtn);
+
+        okTaskBtn.addEventListener('click', () => {
+            inputTask.readOnly = true;
+
+            okTaskBtn.remove();
+        });
+    }
+
+    const addTaskButton = document.getElementById('addTask');
+
+    addTaskButton.addEventListener('click', () => {
+        addTask();
+    });
 });
