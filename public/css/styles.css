@@ -1,4 +1,8 @@
-body, html, h1, h2, p {
+body,
+html,
+h1,
+h2,
+p {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     margin: 0;
     padding: 0;
@@ -13,6 +17,7 @@ body, html, h1, h2, p {
 #totalScreen {
     width: 100vw;
     height: 100dvh;
+    overflow: hidden;
 }
 
 /* Cabeçalho */
@@ -39,7 +44,7 @@ aside {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px 20px 0px 10px;
+    padding: 10px 10px 0px 10px;
     background-color: cadetblue;
 }
 
@@ -77,36 +82,35 @@ main {
     width: 85%;
     display: flex;
     padding: 15px 15px 0px 15px;
-    align-items: space-between;
-    justify-content: space-between;
     flex-direction: column;
+    overflow: auto;
+    gap: 10px;
+    background-color: grey;
+}
+
+#menuTasks {
+    width: 100%;
+    height: 65px;
+    min-height: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: lightblue;
+    padding: 20px;
+    border-radius: 20px;
+    margin-bottom: 20px;
 }
 
 #tasks {
     width: 100%;
     height: auto;
-    min-height: 70%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    background-color: grey;
-    padding: 0px 20px 20px 20px;
-    gap: 5px;
-    margin: 0 0 30px 0;
-}
-
-#menuTasks {
-    width: 100%;
-    height: 10%;
-    min-height: 10%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     background-color: lightblue;
-    padding: 20px 20px 20px 20px;
-    border-radius: 20px;
-    margin-bottom: 10px;
+    padding: 0 20px;
+    gap: 5px;
 }
 
 .task {
@@ -124,16 +128,19 @@ main {
 
 .task input[type="checkbox"] {
     /* Remove os estilos padrão */
-    -webkit-appearance: none; /* Para navegadores baseados em WebKit */
-    -moz-appearance: none; /* Para navegadores Firefox */
+    -webkit-appearance: none;
+    /* Para navegadores baseados em WebKit */
+    -moz-appearance: none;
+    /* Para navegadores Firefox */
     appearance: none;
-    
+
     /* Personalização */
     width: 15px;
     min-width: 15px;
     height: 15px;
     border: 2px solid #333;
-    border-radius: 50%; /* Torna as bordas arredondadas */
+    border-radius: 50%;
+    /* Torna as bordas arredondadas */
     cursor: pointer;
     outline: none;
 
@@ -145,27 +152,66 @@ main {
 }
 
 .task input[type="checkbox"]:checked {
-    background-color: #4caf50; /* Cor de fundo ao marcar */
-    border-color: #4caf50; /* Cor da borda ao marcar */
+    background-color: #4caf50;
+    /* Cor de fundo ao marcar */
+    border-color: #4caf50;
+    /* Cor da borda ao marcar */
 }
 
-.task input[type="checkbox"]:checked + p {
-    text-decoration: line-through; /* Riscar o texto ao marcar */
-    color: gray; /* Opcional: Mudar a cor para indicar a tarefa concluída */
+.task input[type="checkbox"]:checked+p {
+    text-decoration: line-through;
+    /* Riscar o texto ao marcar */
+    color: gray;
+    /* Opcional: Mudar a cor para indicar a tarefa concluída */
 }
 
 .task input[type="checkbox"]:hover {
     border-color: #555;
 }
 
-#tasks .task p {
+p {
     width: 100%;
     padding: 10px 0;
+}
+
+hr {
+    border: none;
+    /* Remove bordas padrão */
+    height: 2px;
+    /* Define altura visível */
+    background-color: #ccc;
+    /* Escolha uma cor visível */
+    margin: 2px 0;
+    /* Adicione espaçamento */
+    width: 100%;
+    /* Certifique-se de que ocupa o espaço total */
+}
+
+#menuTasksComplete {
+    width: 160px;
+    min-width: 160px;
+    height: 10px;
+    min-height: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: lightblue;
+    padding: 15px;
+    border-radius: 20px;
+}
+
+#menuTasksComplete h4 {
+    margin: 0;
 }
 
 #completeTasks {
     width: 100%;
     height: auto;
-    min-height: 30%;
     background-color: lightblue;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0px 20px 20px 20px;
+    gap: 5px;
 }
