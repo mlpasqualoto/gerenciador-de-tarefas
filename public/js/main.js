@@ -43,15 +43,28 @@ document.addEventListener('DOMContentLoaded', () => {
         inputTask.focus();
 
         const okTaskBtn = document.createElement('button');
-        okTaskBtn.textContent = 'OK';
+        okTaskBtn.classList.add('iconBtn');
+        const okIcon = document.createElement('i');
+        okIcon.classList.add('fa-solid', 'fa-check');
+        okTaskBtn.appendChild(okIcon);
         taskBox.appendChild(okTaskBtn);
 
         okTaskBtn.addEventListener('click', () => {
             inputTask.readOnly = true;
             inputTask.style.cursor = 'pointer';
+            taskBox.style.cursor = 'pointer';
 
             okTaskBtn.remove();
             removeTaskBtn.style.display = 'none';
+
+            // Adiciona eventos para mostrar/esconder o botão após concluir a tarefa
+            taskBox.addEventListener('mouseover', () => {
+                removeTaskBtn.style.display = 'inline-block'; // Mostra o botão
+            });
+
+            taskBox.addEventListener('mouseout', () => {
+                removeTaskBtn.style.display = 'none'; // Esconde o botão
+            });
         });
 
         inputTask.addEventListener('keydown', (e) => {
@@ -61,8 +74,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         const removeTaskBtn = document.createElement('button');
+        removeTaskBtn.classList.add('iconBtn');
         removeTaskBtn.classList.add('removeTaskBtn');
-        removeTaskBtn.textContent = 'X';
+        const removeIcon = document.createElement('i');
+        removeIcon.classList.add('fa-solid', 'fa-trash-can');
+        removeTaskBtn.appendChild(removeIcon);
         taskBox.appendChild(removeTaskBtn);
 
         removeTaskBtn.addEventListener('click', () => {
@@ -73,6 +89,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const addTaskBtn = document.getElementById('addTask');
 
     addTaskBtn.addEventListener('click', () => {
-        addTask();
+        addTask(); // função addTask deve retornar o texto do input da tarefa
+
+        // em seguida, enviar texto para rota da api para salvar no banco de dados
     });
 });

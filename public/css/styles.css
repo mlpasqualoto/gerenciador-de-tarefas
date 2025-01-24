@@ -102,7 +102,11 @@ main {
     background-color: lightblue;
     padding: 20px;
     border-radius: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 20px;;
+}
+
+#addTask h1 {
+    color: #333;
 }
 
 #tasks {
@@ -132,7 +136,6 @@ main {
 
 .task:hover {
     background-color: #f0f0f0;
-    cursor: pointer;
 }
 
 .task input[type="checkbox"] {
@@ -185,6 +188,15 @@ main {
     outline: none;
     border: none;
     background-color: transparent;
+}
+
+.iconBtn {
+    background-color: transparent;
+    border: none;
+    border-radius: 50px;
+}
+.iconBtn:hover {
+    background-color: grey;
 }
 
 hr {
