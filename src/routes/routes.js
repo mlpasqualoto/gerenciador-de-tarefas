@@ -62,6 +62,34 @@ const routes = (app) => {
             res.status(500).json({ message: "Erro interno no servidor." });
         }
     });
+
+    app.post("/tasks/add", async (req, res) => {
+        const { task } = req.body;
+
+        try {
+            const mongoClient = await connectToDatabase();
+            const db = mongoClient.db("taskManager");
+            const collection = db.collection("users");
+
+            if (!task) {
+                return res.status(400).json({ message: "Tarefa inválida!" });
+            }
+
+            const result = await collection.updateOne(
+                { name }, // Filtro para encontrar o usuário
+                { $push: { tasks: { task, createdAt: new Date() } } } // Adiciona a tarefa ao array `tasks`
+            );
+
+            if (result.modifiedCount > 0) {
+                res.status(200).json({ success: true, message: 'Tarefa adicionada com sucesso' });
+            } else {
+                res.status(500).json({ error: 'Erro ao adicionar a tarefa' });
+            }
+        } catch (error) {
+            console.error("Erro ao salvar no MongoDB:", error);
+            res.status(500).json({ message: "Erro interno no servidor." });
+        };
+    });
 };
 
 export default routes;

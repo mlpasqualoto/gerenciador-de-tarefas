@@ -53,16 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
         okTaskBtn.appendChild(okIcon);
         taskBox.appendChild(okTaskBtn);
 
-        // Parte III: Cria botão de excluir tarefa
-        const removeTaskBtn = document.createElement('button');
-        removeTaskBtn.classList.add('iconBtn');
-        removeTaskBtn.classList.add('removeTaskBtn');
-        const removeIcon = document.createElement('i');
-        removeIcon.classList.add('fa-solid', 'fa-trash-can');
-        removeTaskBtn.appendChild(removeIcon);
-        taskBox.appendChild(removeTaskBtn);
-
-        // Parte IV: Cria botão de editar tarefa
+        // Parte III: Cria botão de editar tarefa
         const editTaskBtn = document.createElement('button');
         editTaskBtn.classList.add('iconBtn');
         const editIcon = document.createElement('i');
@@ -70,6 +61,15 @@ document.addEventListener('DOMContentLoaded', () => {
         editTaskBtn.style.display = 'none';
         editTaskBtn.appendChild(editIcon);
         taskBox.appendChild(editTaskBtn);
+
+        // Parte IV: Cria botão de excluir tarefa
+        const removeTaskBtn = document.createElement('button');
+        removeTaskBtn.classList.add('iconBtn');
+        removeTaskBtn.classList.add('removeTaskBtn');
+        const removeIcon = document.createElement('i');
+        removeIcon.classList.add('fa-solid', 'fa-trash-can');
+        removeTaskBtn.appendChild(removeIcon);
+        taskBox.appendChild(removeTaskBtn);
 
         // ** Eventos dos botões **
 
