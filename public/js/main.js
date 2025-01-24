@@ -1,21 +1,22 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const checkboxes = document.querySelectorAll("#tasks .task input[type='checkbox']");
+    const tasksContainer = document.getElementById("tasks");
+    const completedTasksContainer = document.getElementById("completeTasks");
+    const addTaskButton = document.getElementById("addTask");
 
-    checkboxes.forEach((checkbox) => {
-        // Seleciona todos os checkboxes
-        checkbox.addEventListener('change', () => {
-            const task = event.target.closest('.task');
-            const completedTasks = document.getElementById('completeTasks');
+    // Event delegation: escuta os eventos de mudança de checkbox
+    document.addEventListener("change", (event) => {
+        if (event.target.matches(".task input[type='checkbox']")) {
+            const checkbox = event.target;
+            const task = checkbox.closest(".task");
 
             if (checkbox.checked) {
-                // Move para a caixa azul
-                completedTasks.appendChild(task);
+                // Move para a seção de tarefas concluídas
+                completedTasksContainer.appendChild(task);
             } else {
-                // Volta para a caixa cinza
-                const tasks = document.getElementById('tasks');
-                tasks.appendChild(task);
+                // Move de volta para a seção de tarefas pendentes
+                tasksContainer.appendChild(task);
             }
-        });
+        }
     });
 
     function addTask() {
@@ -60,6 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         const removeTaskBtn = document.createElement('button');
+        removeTaskBtn.classList.add('removeTaskBtn');
         removeTaskBtn.textContent = 'X';
         taskBox.appendChild(removeTaskBtn);
 
@@ -68,9 +70,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    const addTaskButton = document.getElementById('addTask');
+    const addTaskBtn = document.getElementById('addTask');
 
-    addTaskButton.addEventListener('click', () => {
+    addTaskBtn.addEventListener('click', () => {
         addTask();
     });
 });

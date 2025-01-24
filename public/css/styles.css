@@ -13,6 +13,10 @@ p {
     box-sizing: border-box;
 }
 
+button {
+    cursor: pointer;
+}
+
 /* Tela total */
 #totalScreen {
     width: 100vw;
@@ -163,7 +167,7 @@ main {
     /* Cor da borda ao marcar */
 }
 
-.task input[type="checkbox"]:checked+p {
+.task input[type="checkbox"]:checked+input {
     text-decoration: line-through;
     /* Riscar o texto ao marcar */
     color: gray;
@@ -174,17 +178,13 @@ main {
     border-color: #555;
 }
 
-#taskInput, .taskInput {
+#taskInput,
+.taskInput {
     margin: 10px 0;
     width: 100%;
     outline: none;
     border: none;
     background-color: transparent;
-}
-
-p {
-    width: 100%;
-    padding: 10px 0;
 }
 
 hr {
