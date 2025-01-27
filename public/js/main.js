@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const tasksContainer = document.getElementById("tasks");
     const completedTasksContainer = document.getElementById("completeTasks");
     const addTaskBtn = document.getElementById("addTask");
+    const token = localStorage.getItem("token");
+    console.log(token);
 
     // Event delegation: escuta os eventos de mudança de checkbox
     document.addEventListener("change", (event) => {

@@ -1,7 +1,11 @@
 import express from "express";
 import connectToDatabase from "../config/dbConfig.js";
 import bcrypt from "bcrypt";
-import { error } from "console";
+import dotenv from "dotenv";
+import jwt from "jsonwebtoken";
+import middleWares from "../middlewares/authMiddleware.js";
+
+dotenv.config();
 
 const routes = (app) => {
     app.use(express.json());
@@ -55,16 +59,19 @@ const routes = (app) => {
                 return res.status(401).json({ error: "Credenciais inválidas." });
             }
 
+            const token = jwt.sign({ name: user.name }, process.env.JWT_SECRET, { expiresIn: "1h" });
+
             // Caso sucesso
-            res.status(200).json({ message: "Login bem-sucedido!", user: { name: user.name, email: user.email } })
+            res.status(200).json({ message: "Login bem-sucedido!", token});
         } catch (error) {
             console.error("Erro ao buscar no MongoDB:", error);
             res.status(500).json({ message: "Erro interno no servidor." });
         }
     });
 
-    app.post("/tasks/add", async (req, res) => {
+    app.post("/tasks/add", middleWares.authenticateToken, async (req, res) => {
         const { task } = req.body;
+        const { name } = req.user;
 
         try {
             const mongoClient = await connectToDatabase();
