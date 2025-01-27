@@ -84,7 +84,7 @@ const routes = (app) => {
                 return res.status(404).json({ error: "Usuário não encontrado/Tarefas não encontradas." });
             }
 
-            res.status(200).json({ message: "Tarefas carregadas com sucesso!", tasks: user.tasks });
+            res.status(200).json({ success: true, message: "Tarefas carregadas com sucesso!", tasks: user.tasks });
         } catch (error) {
             console.error("Erro ao buscar no MongoDB:", error);
             res.status(500).json({ message: "Erro interno no servidor." });
