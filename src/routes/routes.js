@@ -59,6 +59,7 @@ const routes = (app) => {
                 return res.status(401).json({ error: "Credenciais inválidas." });
             }
 
+            // Gera o token
             const token = jwt.sign({ name: user.name }, process.env.JWT_SECRET, { expiresIn: "1h" });
 
             // Caso sucesso
@@ -68,6 +69,27 @@ const routes = (app) => {
             res.status(500).json({ message: "Erro interno no servidor." });
         }
     });
+
+    app.get("/tasks", middleWares.authenticateToken, async (req, res) => {
+        const { name } = req.user;
+
+        try {
+            const mongoClient = await connectToDatabase();
+            const db = mongoClient.db("taskManager");
+            const collection = db.collection("users");
+
+            const user = await collection.findOne({ name }, { projection: { tasks: 1, _id: 0 } });
+
+            if (!user || !user.tasks) {
+                return res.status(404).json({ error: "Usuário não encontrado/Tarefas não encontradas." });
+            }
+
+            res.status(200).json({ message: "Tarefas carregadas com sucesso!", tasks: user.tasks });
+        } catch (error) {
+            console.error("Erro ao buscar no MongoDB:", error);
+            res.status(500).json({ message: "Erro interno no servidor." });
+        };
+});
 
     app.post("/tasks/add", middleWares.authenticateToken, async (req, res) => {
         const { task } = req.body;

@@ -1,10 +1,39 @@
 import reqApi from "../../src/controllers/controllers.js";
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     const tasksContainer = document.getElementById("tasks");
     const completedTasksContainer = document.getElementById("completeTasks");
     const addTaskBtn = document.getElementById("addTask");
     const token = localStorage.getItem("token"); // Pega o token do localStorage armazenado no navegador
+
+    // Carrega as tarefas do usuário
+    try {
+        const tasks = await reqApi.getTasks(token);
+
+        if (tasks.length > 0) {
+            tasks.forEach(task => {
+                const taskBox = document.createElement('div');
+                taskBox.classList.add('task');
+
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+
+                const inputTask = document.createElement('input');
+                inputTask.classList.add('taskInput');
+                inputTask.type = 'text';
+                inputTask.value = task.task;
+                inputTask.readOnly = true;
+
+                taskBox.appendChild(checkbox);
+                taskBox.appendChild(inputTask);
+                tasksContainer.appendChild(taskBox);
+            });
+        } else {
+            console.log("Nenhuma tarefa encontrada.");
+        }
+    } catch (error) {
+        console.error("Erro ao carregar tarefas:", error);
+    }
 
     // Event delegation: escuta os eventos de mudança de checkbox
     document.addEventListener("change", (event) => {
