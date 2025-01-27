@@ -1,9 +1,10 @@
+import reqApi from "../../src/controllers/controllers.js";
+
 document.addEventListener('DOMContentLoaded', () => {
     const tasksContainer = document.getElementById("tasks");
     const completedTasksContainer = document.getElementById("completeTasks");
     const addTaskBtn = document.getElementById("addTask");
-    const token = localStorage.getItem("token");
-    console.log(token);
+    const token = localStorage.getItem("token"); // Pega o token do localStorage armazenado no navegador
 
     // Event delegation: escuta os eventos de mudança de checkbox
     document.addEventListener("change", (event) => {
@@ -83,6 +84,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             okTaskBtn.style.display = 'none'; // Esconde o botão de ok
             removeTaskBtn.style.display = 'none'; // Esconde o botão de remover
+
+            // Envia a tarefa para a API
+            reqApi.addTask(token, inputTask.value);
 
             // mostra o botão de excluir tarefa ao passar o mouse por cima da tarefa
             taskBox.addEventListener('mouseover', () => {
