@@ -8,9 +8,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Carrega as tarefas do usuário
     try {
+        tasksContainer.innerHTML = "<p>Carregando tarefas...</p>";
         const tasks = await reqApi.getTasks(token);
 
         if (tasks.length > 0) {
+            tasksContainer.innerHTML = ""; // Limpa a mensagem de carregando tarefas
             tasks.forEach(task => {
                 const taskBox = document.createElement('div');
                 taskBox.classList.add('task');
@@ -27,6 +29,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                 taskBox.appendChild(checkbox);
                 taskBox.appendChild(inputTask);
                 tasksContainer.appendChild(taskBox);
+
+                tasksContainer.prepend(taskBox);
             });
         } else {
             console.log("Nenhuma tarefa encontrada.");
