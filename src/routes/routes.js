@@ -119,6 +119,35 @@ const routes = (app) => {
             res.status(500).json({ message: "Erro interno no servidor." });
         };
     });
+
+    app.delete("/tasks/delete", middleWares.authenticateToken, async (req, res) => {
+        const { task } = req.body;
+        const { name } = req.user;
+
+        try {
+            const mongoClient = await connectToDatabase();
+            const db = mongoClient.db("taskManager");
+            const collection = db.collection("users");
+
+            if (!task) {
+                return res.status(400).json({ message: "Tarefa inválida!" });
+            }
+
+            const result = await collection.updateOne(
+                { name },
+                { $pull: { tasks: { task } } } // Remove a tarefa do array `tasks`
+            );
+
+            if (result.modifiedCount > 0) {
+                res.status(200).json({ success: true, message: 'Tarefa deletada com sucesso' });
+            } else {
+                res.status(500).json({ error: 'Erro ao deletar a tarefa' });
+            }
+        } catch (error) {
+            console.error("Erro ao salvar no MongoDB:", error);
+            res.status(500).json({ message: "Erro interno no servidor." });
+        };
+    });
 };
 
 export default routes;

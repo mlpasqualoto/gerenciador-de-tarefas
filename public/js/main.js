@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         // ** Eventos dos botões **
 
         // Adiciona a tarefa 
-        okTaskBtn.addEventListener('click', () => {
+        okTaskBtn.addEventListener('click', async () => {
             inputTask.readOnly = true;
             inputTask.style.cursor = 'pointer';
             taskBox.style.cursor = 'pointer';
@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             removeTaskBtn.style.display = 'none'; // Esconde o botão de remover
 
             // Envia a tarefa para a API
-            reqApi.addTask(token, inputTask.value);
+            await reqApi.addTask(token, inputTask.value);
 
             // mostra o botão de excluir tarefa ao passar o mouse por cima da tarefa
             taskBox.addEventListener('mouseover', () => {
@@ -142,7 +142,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
 
         // Remove a tarefa
-        removeTaskBtn.addEventListener('click', () => {
+        removeTaskBtn.addEventListener('click', async () => {
+            const taskContent = inputTask.value; // Captura o conteúdo da tarefa
+
             taskBox.remove();
         });
 
