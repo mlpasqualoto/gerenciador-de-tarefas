@@ -148,6 +148,35 @@ const routes = (app) => {
             res.status(500).json({ message: "Erro interno no servidor." });
         };
     });
+
+    app.put("/tasks/update", middleWares.authenticateToken, async (req, res) => {
+        const { oldTask, newTask } = req.body;
+        const { name } = req.user;
+
+        try {
+            const mongoClient = await connectToDatabase();
+            const db = mongoClient.db("taskManager");
+            const collection = db.collection("users");
+
+            if (!oldTask) {
+                return res.status(400).json({ message: "Tarefa inválida!" });
+            }
+
+            const result = await collection.updateOne(
+                { name, "tasks.task": oldTask },
+                { $set: { "tasks.$.task": newTask } } // Atualiza a tarefa no array `tasks`
+            );
+
+            if (result.modifiedCount > 0) {
+                res.status(200).json({ success: true, message: 'Tarefa atualizada com sucesso' });
+            } else {
+                res.status(500).json({ error: 'Erro ao atualizar a tarefa' });
+            }
+        } catch (error) {
+            console.error("Erro ao salvar no MongoDB:", error);
+            res.status(500).json({ message: "Erro interno no servidor." });
+        };
+    });
 };
 
 export default routes;

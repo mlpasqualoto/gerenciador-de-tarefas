@@ -70,6 +70,30 @@ const reqApi = {
             return [];
         }
     },
+
+    editTasks: async (token, oldTask, newTask) => {
+        try {
+            const response = await fetch ("http://localhost:5000/tasks/update", {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+                },
+                body: JSON.stringify({ oldTask, newTask }),
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                console.log("Tarefa atualizada com sucesso:", data.message);
+            } else {
+                console.error("Erro ao atualizar tarefa:", data.error || data.message);
+            }
+        } catch (error) {
+            console.error("Erro ao atualizar tarefa:", error);
+            return [];
+        }
+    },
 };
 
 export default reqApi;

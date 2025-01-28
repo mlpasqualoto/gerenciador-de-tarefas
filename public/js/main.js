@@ -29,6 +29,97 @@ document.addEventListener('DOMContentLoaded', async () => {
                 taskBox.appendChild(checkbox);
                 taskBox.appendChild(inputTask);
                 tasksContainer.appendChild(taskBox);
+
+                // Cria botão de ok para finalizar edição da tarefa
+                const editOkTaskBtn = document.createElement('button');
+                editOkTaskBtn.classList.add('iconBtn');
+                const okIcon = document.createElement('i');
+                okIcon.classList.add('fa-solid', 'fa-check');
+                editOkTaskBtn.appendChild(okIcon);
+                taskBox.appendChild(editOkTaskBtn);
+                editOkTaskBtn.style.display = 'none';
+
+                // Cria botão de editar tarefa
+                const editTaskBtn = document.createElement('button');
+                editTaskBtn.classList.add('iconBtn');
+                const editIcon = document.createElement('i');
+                editIcon.classList.add('fa-solid', 'fa-pen');
+                editTaskBtn.appendChild(editIcon);
+                taskBox.appendChild(editTaskBtn);
+                editTaskBtn.style.display = 'none';
+
+                // Cria botão de excluir tarefa
+                const removeTaskBtn = document.createElement('button');
+                removeTaskBtn.classList.add('iconBtn');
+                removeTaskBtn.classList.add('removeTaskBtn');
+                const removeIcon = document.createElement('i');
+                removeIcon.classList.add('fa-solid', 'fa-trash-can');
+                removeTaskBtn.appendChild(removeIcon);
+                taskBox.appendChild(removeTaskBtn);
+                removeTaskBtn.style.display = 'none';
+
+                // mostra o botão de excluir tarefa ao passar o mouse por cima da tarefa
+                taskBox.addEventListener('mouseover', () => {
+                removeTaskBtn.style.display = 'inline-block'; // Mostra o botão de remover
+                editTaskBtn.style.display = 'inline-block'; // Mostra o botão de editar
+                });
+
+                // esconde o botão de excluir tarefa após tirar o mouse de cima da tarefa
+                taskBox.addEventListener('mouseout', () => {
+                removeTaskBtn.style.display = 'none'; // Esconde o botão de remover
+                editTaskBtn.style.display = 'none'; // Esconde o botão de editar
+                });
+
+                // ** Eventos dos botões **
+
+                // Remove a tarefa
+                removeTaskBtn.addEventListener('click', async () => {
+                    const taskContent = inputTask.value; // Captura o conteúdo da tarefa
+
+                    // Envia a tarefa para a API
+                    await reqApi.deleteTasks(token, taskContent);
+
+                    taskBox.remove();
+                });
+
+                //Edita a tarefa
+                editTaskBtn.addEventListener('click', () => {
+                    const oldTaskContent = inputTask.value; // Captura o conteúdo da tarefa
+
+                    inputTask.readOnly = false;
+                    inputTask.style.cursor = 'text';
+                    taskBox.style.cursor = 'text';
+
+                    inputTask.focus()
+
+                    editTaskBtn.style.display = 'none'; // Esconde o botão de editar
+                    editOkTaskBtn.style.display = 'inline-block'; // Mostra o botão de ok
+
+                    // Quando o botão de ok for clicado, envia a tarefa editada para a API
+                    editOkTaskBtn.addEventListener('click', async () => {
+                        const newTaskContent = inputTask.value; // Captura o novo conteúdo da tarefa
+
+                        try {
+                            // Envia a tarefa editada para a API
+                            await reqApi.editTasks(token, oldTaskContent, newTaskContent);
+
+                            inputTask.readOnly = true; // Bloqueia a edição novamente
+                            inputTask.style.cursor = 'pointer';
+                            taskBox.style.cursor = 'pointer';
+
+                            editOkTaskBtn.remove() // Remove o botão de ok
+                        } catch (error) {
+                            console.error("Erro ao editar a tarefa:", error);
+                            alert("Erro ao editar a tarefa. Tente novamente.");
+                        }
+                    });
+
+                    editOkTaskBtn.addEventListener("keydown", (e) => {
+                        if (e.key === "Enter") {
+                            editOkTaskBtn.click();
+                        }
+                    });
+                });
             });
         } else {
             console.log("Nenhuma tarefa encontrada.");
@@ -113,7 +204,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             inputTask.style.cursor = 'pointer';
             taskBox.style.cursor = 'pointer';
 
-            okTaskBtn.style.display = 'none'; // Esconde o botão de ok
+            okTaskBtn.remove() // Remove o botão de ok
             removeTaskBtn.style.display = 'none'; // Esconde o botão de remover
 
             // Envia a tarefa para a API
@@ -151,13 +242,39 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         //Edita a tarefa
         editTaskBtn.addEventListener('click', () => {
+            const oldTaskContent = inputTask.value; // Captura o conteúdo da tarefa
+
             inputTask.readOnly = false;
             inputTask.style.cursor = 'text';
             taskBox.style.cursor = 'text';
 
             inputTask.focus()
 
-            okTaskBtn.style.display = 'inline-block'; // Mostra o botão de ok
+            const editOkTaskBtn = document.createElement('button');
+            editOkTaskBtn.classList.add('iconBtn');
+            const okIcon = document.createElement('i');
+            okIcon.classList.add('fa-solid', 'fa-check');
+            editOkTaskBtn.appendChild(okIcon);
+            taskBox.appendChild(editOkTaskBtn);
+
+            // Quando o botão de ok for clicado, envia a tarefa editada para a API
+            editOkTaskBtn.addEventListener('click', async () => {
+                const newTaskContent = inputTask.value; // Captura o novo conteúdo da tarefa
+
+                try {
+                    // Envia a tarefa editada para a API
+                    await reqApi.editTasks(token, oldTaskContent, newTaskContent);
+
+                    inputTask.readOnly = true; // Bloqueia a edição novamente
+                    inputTask.style.cursor = 'pointer';
+                    taskBox.style.cursor = 'pointer';
+
+                    editOkTaskBtn.remove() // Remove o botão de ok
+                } catch (error) {
+                    console.error("Erro ao editar a tarefa:", error);
+                    alert("Erro ao editar a tarefa. Tente novamente.");
+                }
+            });
         });	
     };
 
