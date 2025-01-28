@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                         }
                     });
 
-                    editOkTaskBtn.addEventListener("keydown", (e) => {
+                    inputTask.addEventListener("keydown", (e) => {
                         if (e.key === "Enter") {
                             editOkTaskBtn.click();
                         }
