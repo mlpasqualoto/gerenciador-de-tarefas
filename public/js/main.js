@@ -125,6 +125,15 @@ document.addEventListener('DOMContentLoaded', async () => {
                         }
                     });
                 });
+
+                if (task.checked) {
+                    // Move para a seção de tarefas concluídas
+                    completedTasksContainer.appendChild(taskBox);
+                    checkbox.checked = true;
+                } else {
+                    // Move de volta para a seção de tarefas pendentes
+                    tasksContainer.appendChild(taskBox);
+                }
             });
         } else {
             tasksContainer.innerHTML = ""; // Limpa antes de renderizar
@@ -135,7 +144,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     // Event delegation: escuta os eventos de mudança de checkbox
-    document.addEventListener("change", (event) => {
+    document.addEventListener("change", async (event) => {
         if (event.target.matches(".task input[type='checkbox']")) {
             const checkbox = event.target;
             const task = checkbox.closest(".task");
@@ -143,9 +152,15 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (checkbox.checked) {
                 // Move para a seção de tarefas concluídas
                 completedTasksContainer.appendChild(task);
+
+                // Envia a tarefa como conclupida para a API
+                await reqApi.checkedTask(token, task.querySelector(".taskInput").value, true);
             } else {
                 // Move de volta para a seção de tarefas pendentes
                 tasksContainer.appendChild(task);
+
+                // Envia a tarefa como pendente para a API
+                await reqApi.checkedTask(token, task.querySelector(".taskInput").value, false);
             }
         }
     });
