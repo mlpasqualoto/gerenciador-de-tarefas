@@ -127,7 +127,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                 });
             });
         } else {
-            console.log("Nenhuma tarefa encontrada.");
+            tasksContainer.innerHTML = ""; // Limpa antes de renderizar
+            tasksContainer.innerHTML = "<p>Nenhuma tarefa encontrada...</p>";
         }
     } catch (error) {
         console.error("Erro ao carregar tarefas:", error);

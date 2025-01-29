@@ -94,6 +94,30 @@ const reqApi = {
             return [];
         }
     },
+
+    checkedTask: async (token, task, checked) => {
+        try {
+            const response = await fetch("http://localhost:5000/tasks/checked", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+                },
+                body: JSON.stringify({ task, checked }),
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                console.log("Tarefa atualizada com sucesso:", data.message);
+            } else {
+                console.error("Erro ao atualizar tarefa:", data.error || data.message);
+            }
+        } catch (error) {
+            console.error("Erro ao atualizar tarefa:", error);
+            return [];
+        }
+    },
 };
 
 export default reqApi;
