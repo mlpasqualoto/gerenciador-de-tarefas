@@ -60,14 +60,16 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 // mostra o botão de excluir tarefa ao passar o mouse por cima da tarefa
                 taskBox.addEventListener('mouseover', () => {
-                removeTaskBtn.style.display = 'inline-block'; // Mostra o botão de remover
-                editTaskBtn.style.display = 'inline-block'; // Mostra o botão de editar
+                    if (!inputTask.readOnly) return; // Não mostrar se estiver no modo de edição
+                    removeTaskBtn.style.display = 'inline-block'; // Mostra o botão de remover
+                    editTaskBtn.style.display = 'inline-block'; // Mostra o botão de editar
                 });
 
                 // esconde o botão de excluir tarefa após tirar o mouse de cima da tarefa
                 taskBox.addEventListener('mouseout', () => {
-                removeTaskBtn.style.display = 'none'; // Esconde o botão de remover
-                editTaskBtn.style.display = 'none'; // Esconde o botão de editar
+                    if (!inputTask.readOnly) return; // Não esconder se estiver no modo de edição
+                    removeTaskBtn.style.display = 'none'; // Esconde o botão de remover
+                    editTaskBtn.style.display = 'none'; // Esconde o botão de editar
                 });
 
                 // ** Eventos dos botões **
@@ -92,6 +94,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                     inputTask.focus()
 
+                    removeTaskBtn.style.display = 'inline-block'; // Mostra o botão de remover
                     editTaskBtn.style.display = 'none'; // Esconde o botão de editar
                     editOkTaskBtn.style.display = 'inline-block'; // Mostra o botão de ok
 
@@ -107,7 +110,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                             inputTask.style.cursor = 'pointer';
                             taskBox.style.cursor = 'pointer';
 
-                            editOkTaskBtn.remove() // Remove o botão de ok
+                            editTaskBtn.style.display = 'none'; // Esconde o botão de editar
+                            removeTaskBtn.style.display = 'none'; // Esconde o botão de remover
+                            editOkTaskBtn.style.display = 'none'; // Esconde o botão de ok
                         } catch (error) {
                             console.error("Erro ao editar a tarefa:", error);
                             alert("Erro ao editar a tarefa. Tente novamente.");
