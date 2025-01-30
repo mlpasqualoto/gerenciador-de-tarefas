@@ -70,6 +70,27 @@ const routes = (app) => {
         }
     });
 
+    app.get("/serverTime", async (req, res) => {
+        try {
+            const serverTime = new Date();
+            const weekDays = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"];
+            const months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+
+            const day = serverTime.getDate();
+            const monthNum = serverTime.getMonth() + 1;
+            const month = months[monthNum];
+            const year = serverTime.getFullYear();
+            const weekDay = weekDays[serverTime.getDay()];
+
+            const date = {day: day, month: month, year: year, weekDay: weekDay};
+
+            res.status(200).json({ success: true, message: "Data obtida com sucesso", date: date });
+        } catch (error) {
+            console.error("Erro ao obter a data do servidor:", error);
+            res.status(500).json({ message: "Erro interno no servidor." });
+        }
+    });
+
     app.get("/tasks", middleWares.authenticateToken, async (req, res) => {
         const { name } = req.user;
 

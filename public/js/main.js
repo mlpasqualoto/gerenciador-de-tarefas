@@ -6,6 +6,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     const addTaskBtn = document.getElementById("addTask");
     const token = localStorage.getItem("token"); // Pega o token do localStorage armazenado no navegador
     const logoutBtn = document.getElementById("logoutBtn");
+    const weekDayHeader = document.getElementById("weekDayHeader");
+    const dateHeader = document.getElementById("dateHeader");
+
+    // Data atual
+    const date = await reqApi.getDate();
+    weekDayHeader.innerHTML = `${date.weekDay},`;
+    dateHeader.innerHTML = `${date.day} de ${date.month} de ${date.year}`;
 
     // Carrega as tarefas do usuário
     try {

@@ -1,4 +1,28 @@
 const reqApi = {
+    getDate: async () => {
+        try {
+            const response = await fetch ("http://localhost:5000/serverTime", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                console.log("Data obtida com sucesso:", data.message);
+                return data.date;
+            } else {
+                console.error("Erro ao obter data:", data.error || data.message);
+                return [];
+            }
+        } catch (error) {
+            console.error("Erro ao buscar data:", error);
+            return [];
+        }
+    },
+
     addTask: async (token, task) => {
         try {
             const response = await fetch("http://localhost:5000/tasks/add", {
@@ -16,9 +40,11 @@ const reqApi = {
                 console.log("Tarefa adicionada com sucesso:", data.message);
             } else {
                 console.error("Erro ao adicionar tarefa:", data.error || data.message);
+                return [];
             }
         } catch (error) {
             console.error("Erro ao adicionar tarefa:", error);
+            return [];
         }
     },    
 
