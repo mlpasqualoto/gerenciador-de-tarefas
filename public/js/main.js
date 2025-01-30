@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const completedTasksContainer = document.getElementById("completeTasks");
     const addTaskBtn = document.getElementById("addTask");
     const token = localStorage.getItem("token"); // Pega o token do localStorage armazenado no navegador
+    const logoutBtn = document.getElementById("logoutBtn");
 
     // Carrega as tarefas do usuário
     try {
@@ -299,5 +300,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     addTaskBtn.addEventListener('click', () => {
         addRemoveTask(); // função addTask deve retornar o texto do input da tarefa
+    });
+
+    // Logout
+    logoutBtn.addEventListener('click', () => {
+        localStorage.removeItem("token");
+        window.location.href = "login.html";
     });
 });

@@ -31,8 +31,18 @@ header {
     background-color: #333;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
     padding: 10px 20px;
+}
+
+#logoutBtn {
+    background-color: transparent;
+    border: none;
+    border-radius: 50px;
+}
+
+#logoutBtn:hover {
+    background-color: #555555;;
 }
 
 /* Corpo */
@@ -196,7 +206,7 @@ main {
     border-radius: 50px;
 }
 .iconBtn:hover {
-    background-color: grey;
+    background-color: #808080;
 }
 
 hr {
