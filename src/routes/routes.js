@@ -78,18 +78,24 @@ const routes = (app) => {
             const db = mongoClient.db("taskManager");
             const collection = db.collection("users");
 
-            const user = await collection.findOne({ name }, { projection: { tasks: 1, _id: 0 } });
+            const user = await collection.findOne(
+                { name }, 
+                { projection: { tasks: 1, _id: 0 } }
+            );
 
             if (!user || !user.tasks) {
                 return res.status(404).json({ error: "Usuário não encontrado/Tarefas não encontradas." });
             }
 
-            res.status(200).json({ success: true, message: "Tarefas carregadas com sucesso!", tasks: user.tasks });
+            // Ordena as tarefas pela data de criação (mais recentes primeiro)
+            const sortedTasks = user.tasks.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+            res.status(200).json({ success: true, message: "Tarefas carregadas com sucesso!", tasks: sortedTasks });
         } catch (error) {
             console.error("Erro ao buscar no MongoDB:", error);
             res.status(500).json({ message: "Erro interno no servidor." });
         };
-});
+    });
 
     app.post("/tasks/add", middleWares.authenticateToken, async (req, res) => {
         const { task } = req.body;

@@ -169,8 +169,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         // ** Cria a caixa da tarefa e os botões **
 
         // Parte I: Adiciona a caixa da tarefa
-        const tasksBox = document.getElementById('tasks');
-
         const taskBox = document.createElement('div');
         taskBox.classList.add('task');
 
@@ -185,9 +183,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         taskBox.appendChild(checkbox);
         taskBox.appendChild(inputTask);
-        tasksBox.appendChild(taskBox);
+        tasksContainer.appendChild(taskBox);
 
-        tasksBox.prepend(taskBox);
+        tasksContainer.prepend(taskBox);
 
         inputTask.focus();
 
@@ -301,7 +299,5 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     addTaskBtn.addEventListener('click', () => {
         addRemoveTask(); // função addTask deve retornar o texto do input da tarefa
-        
-        // em seguida, enviar texto para rota da api para salvar no banco de dados
     });
 });
