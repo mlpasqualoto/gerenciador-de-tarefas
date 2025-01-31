@@ -238,6 +238,40 @@ const routes = (app) => {
             res.status(500).json({ message: "Erro interno no servidor." });
         };
     });
+
+    app.post("/tasks/favorite", middleWares.authenticateToken, async (req, res) => {
+        const { favorite, task } = req.body;
+        const { name } = req.user;
+
+        try {
+            const mongoClient = await connectToDatabase();
+            const db = mongoClient.db("taskManager");
+            const collection = db.collection("users");
+
+            if (!task) {
+                return res.status(400).json({ message: "Tarefa inválida!" });
+            }
+
+            const result = await collection.updateOne(
+                { name, "tasks.task": task }, // Localiza o documento pelo nome e pela tarefa
+                { 
+                    $set: { 
+                        "tasks.$.favorite": favorite, // Atualiza o campo 'favorite'
+                        "tasks.$.favoriteAt": new Date() // Adiciona ou atualiza o campo 'favoriteAt'
+                    } 
+                }
+            );
+
+            if (result.modifiedCount > 0) {
+                res.status(200).json({ success: true, message: 'Tarefa marcada como favorita' });
+            } else {
+                res.status(500).json({ error: 'Erro ao marcar a tarefa como favorita' });
+            }
+        } catch (error) {
+            console.error("Erro ao salvar no MongoDB:", error);
+            res.status(500).json({ message: "Erro interno no servidor." });
+        };
+    });
 };
 
 export default routes;

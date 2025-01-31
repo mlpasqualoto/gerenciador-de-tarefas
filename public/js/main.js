@@ -66,11 +66,23 @@ document.addEventListener('DOMContentLoaded', async () => {
                 taskBox.appendChild(removeTaskBtn);
                 removeTaskBtn.style.display = 'none';
 
+                // Cria botão de favoritar tarefa
+                const favoriteTaskBtn = document.createElement('button');
+                favoriteTaskBtn.classList.add('iconBtn');
+                favoriteTaskBtn.classList.add('favoriteTaskBtn');
+                const favoriteIcon = document.createElement('i');
+                favoriteIcon.classList.add('fa-regular', 'fa-star');
+                favoriteTaskBtn.appendChild(favoriteIcon);
+                taskBox.appendChild(favoriteTaskBtn);
+                favoriteTaskBtn.style.display = 'none';
+
                 // mostra o botão de excluir tarefa ao passar o mouse por cima da tarefa
                 taskBox.addEventListener('mouseover', () => {
                     if (!inputTask.readOnly) return; // Não mostrar se estiver no modo de edição
                     removeTaskBtn.style.display = 'inline-block'; // Mostra o botão de remover
                     editTaskBtn.style.display = 'inline-block'; // Mostra o botão de editar
+                    if (favoriteIcon.classList.contains("fa-solid")) return; // Não mostrar se estiver favoritado
+                    favoriteTaskBtn.style.display = 'inline-block'; // Mostra o botão de favoritar
                 });
 
                 // esconde o botão de excluir tarefa após tirar o mouse de cima da tarefa
@@ -78,6 +90,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                     if (!inputTask.readOnly) return; // Não esconder se estiver no modo de edição
                     removeTaskBtn.style.display = 'none'; // Esconde o botão de remover
                     editTaskBtn.style.display = 'none'; // Esconde o botão de editar
+                    if (favoriteIcon.classList.contains("fa-solid")) return; // Não esconder se estiver favoritado
+                    favoriteTaskBtn.style.display = 'none'; // Esconde o botão de favoritar
                 });
 
                 // ** Eventos dos botões **
@@ -134,6 +148,43 @@ document.addEventListener('DOMContentLoaded', async () => {
                     });
                 });
 
+                // Favorita a tarefa
+                favoriteTaskBtn.addEventListener('click', async () => {
+                    // Altera a cor do ícone
+                    const icon = event.currentTarget.querySelector("i");
+                    icon.classList.toggle("fa-regular");
+                    icon.classList.toggle("fa-solid");
+
+                    // Mostra o botão de favoritar caso esteja favoritado
+                    if (icon.classList.contains("fa-solid")) {
+                        favoriteTaskBtn.style.display = "inline-block"; // Exibe o botão
+
+                        // Envia a tarefa para a API
+                        await reqApi.favoriteTask(token, inputTask.value, true);
+                    } else {
+                        favoriteTaskBtn.style.display = "none"; // Oculta o botão
+
+                        // Envia a tarefa para a API
+                        await reqApi.favoriteTask(token, inputTask.value, false);
+                    }
+
+                    // Move a tarefa para o topo da lista
+                    tasksContainer.prepend(taskBox);
+                });
+
+                // Verifica se a tarefa está favoritada
+                if (task.favorite) {
+                    // Altera a cor do ícone
+                    favoriteIcon.classList.toggle("fa-regular");
+                    favoriteIcon.classList.toggle("fa-solid");
+
+                    // Mostra o botão de favoritar caso esteja favoritado
+                    favoriteTaskBtn.style.display = "inline-block"; // Exibe o botão
+                } else {
+                    favoriteTaskBtn.style.display = "none"; // Oculta o botão
+                }
+
+                // Verifica se a tarefa está concluída
                 if (task.checked) {
                     // Move para a seção de tarefas concluídas
                     completedTasksContainer.appendChild(taskBox);
@@ -328,15 +379,18 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Mostra o botão de favoritar caso esteja favoritado
             if (icon.classList.contains("fa-solid")) {
                 favoriteTaskBtn.style.display = "inline-block"; // Exibe o botão
+
+                // Envia a tarefa para a API
+                await reqApi.favoriteTask(token, inputTask.value, true);
             } else {
                 favoriteTaskBtn.style.display = "none"; // Oculta o botão
+
+                // Envia a tarefa para a API
+                await reqApi.favoriteTask(token, inputTask.value, false);
             }
 
             // Move a tarefa para o topo da lista
             tasksContainer.prepend(taskBox);
-
-            // Envia a tarefa para a API
-
         });
     };
 
