@@ -77,7 +77,7 @@ const routes = (app) => {
             const months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
 
             const day = serverTime.getDate();
-            const monthNum = serverTime.getMonth() + 1;
+            const monthNum = serverTime.getMonth();
             const month = months[monthNum];
             const year = serverTime.getFullYear();
             const weekDay = weekDays[serverTime.getDay()];
