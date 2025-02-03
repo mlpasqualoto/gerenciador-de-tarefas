@@ -8,6 +8,28 @@ document.addEventListener('DOMContentLoaded', async () => {
     const logoutBtn = document.getElementById("logoutBtn");
     const weekDayHeader = document.getElementById("weekDayHeader");
     const dateHeader = document.getElementById("dateHeader");
+    const vsBtn = document.getElementById("vsModeBtn");
+
+    // Light/Dark mode
+    vsBtn.addEventListener('click', () => {
+        const iconBtn = document.getElementById("iconBtn");
+        iconBtn.classList.toggle("fa-regular");
+        iconBtn.classList.toggle("fa-solid");
+
+        if (iconBtn.classList.contains("fa-solid")) {
+            document.body.classList.add("light-mode");
+            localStorage.setItem("theme", "light");
+        } else {
+            document.body.classList.remove("light-mode");
+            localStorage.setItem("theme", "dark");
+        }
+    });
+
+    // Logout
+    logoutBtn.addEventListener('click', () => {
+        localStorage.removeItem("token");
+        window.location.href = "login.html";
+    });
 
     // Data atual
     const date = await reqApi.getDate();
@@ -396,11 +418,5 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     addTaskBtn.addEventListener('click', () => {
         addRemoveTask(); // função addTask deve retornar o texto do input da tarefa
-    });
-
-    // Logout
-    logoutBtn.addEventListener('click', () => {
-        localStorage.removeItem("token");
-        window.location.href = "login.html";
     });
 });

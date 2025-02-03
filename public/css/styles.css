@@ -6,7 +6,7 @@ p {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     margin: 0;
     padding: 0;
-    color: #E0E0E0;
+    color: #F0F0F0;
 }
 
 * {
@@ -17,26 +17,31 @@ button {
     cursor: pointer;
 }
 
+button:active {
+    transform: scale(0.95);
+}
+
 /* Tela total */
 #totalScreen {
     width: 100vw;
     height: 100dvh;
     overflow: hidden;
-    background-color: #1E1E1E;
+    background-color: #0D0D0D;
 }
 
 /* Cabeçalho */
 header {
     height: 7%;
     min-height: 7%;
-    background-color: #2A2A2A;
+    background-color: #121212;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-#dateContainer {
+#dateContainer, #userContainer {
     display: flex;
     align-items: baseline;
     justify-content: flex-start;
@@ -46,7 +51,7 @@ header {
 }
 
 #logoutBtn:hover {
-    background-color: #555555;
+    background-color: #333333;
 }
 
 /* Corpo */
@@ -63,7 +68,8 @@ aside {
     align-items: center;
     justify-content: center;
     padding: 10px 10px 0px 10px;
-    background-color: #242424;
+    background-color: #1A1A1A;
+    box-shadow: inset -2px 0 4px rgba(0,0,0,0.5);
 }
 
 #menu {
@@ -73,7 +79,8 @@ aside {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    background-color: #2A2A2A;
+    background-color: #1E1E1E;
+    border-radius: 8px;
 }
 
 ul {
@@ -92,7 +99,7 @@ i {
 
 a {
     text-decoration: none;
-    color: #E0E0E0;
+    color: #F0F0F0;
 }
 
 main {
@@ -103,7 +110,8 @@ main {
     flex-direction: column;
     overflow: auto;
     gap: 10px;
-    background-color: #2E2E2E;
+    background-color: #1F1F1F;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
 }
 
 #menuTasks {
@@ -113,13 +121,14 @@ main {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #3A3A3A;
+    background-color: #272727;
     padding: 20px;
     border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.4);
 }
 
 #addTask h1 {
-    color: #E0E0E0;
+    color: #F0F0F0;
 }
 
 #tasks {
@@ -129,7 +138,7 @@ main {
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    background-color: #2E2E2E;
+    background-color: #1F1F1F;
     padding: 0 20px;
     gap: 5px;
 }
@@ -144,12 +153,14 @@ main {
     padding: 0 25px 0 25px;
     border-radius: 20px;
     border: none;
-    background-color: #3A3A3A;
+    background-color: #2B2B2B;
+    transition: background-color 0.2s, transform 0.2s;
 }
 
 .task:hover {
-    background-color: #4F4F4F;
+    background-color: #3A3A3A;
     cursor: pointer;
+    transform: translateX(5px);
 }
 
 .task input[type="checkbox"] {
@@ -164,14 +175,14 @@ main {
     width: 15px;
     min-width: 15px;
     height: 15px;
-    border: 2px solid #E0E0E0;
+    border: 2px solid #F0F0F0;
     border-radius: 50%;
     /* Torna as bordas arredondadas */
     cursor: pointer;
     outline: none;
 
     /* Cor de fundo */
-    background-color: #1E1E1E;
+    background-color: #0D0D0D;
 
     /* Estilo ao passar o mouse */
     transition: background-color 0.2s, border-color 0.2s, transform 0.2s;
@@ -187,12 +198,12 @@ main {
 .task input[type="checkbox"]:checked+input {
     text-decoration: line-through;
     /* Riscar o texto ao marcar */
-    color: #B0B0B0;
+    color: #AAAAAA;
     /* Opcional: Mudar a cor para indicar a tarefa concluída */
 }
 
 .task input[type="checkbox"]:hover {
-    border-color: #B0B0B0;
+    border-color: #CCCCCC;
     transform: scale(1.2);
 }
 
@@ -203,7 +214,7 @@ main {
     outline: none;
     border: none;
     background-color: transparent;
-    color: #E0E0E0;
+    color: #F0F0F0;
 }
 
 .taskInput:hover {
@@ -216,7 +227,7 @@ main {
     border-radius: 50px;
 }
 .iconBtn:hover {
-    background-color: #555555;
+    background-color: #333333;
 }
 
 hr {
@@ -224,7 +235,7 @@ hr {
     /* Remove bordas padrão */
     height: 2px;
     /* Define altura visível */
-    background-color: #555555;
+    background-color: #333333;
     /* Escolha uma cor visível */
     margin: 2px 0;
     /* Adicione espaçamento */
@@ -240,9 +251,10 @@ hr {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #3A3A3A;
+    background-color: #272727;
     padding: 15px;
     border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.4);
 }
 
 #menuTasksComplete h4 {
@@ -252,11 +264,166 @@ hr {
 #completeTasks {
     width: 100%;
     height: auto;
-    background-color: #2E2E2E;
+    background-color: #1F1F1F;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
     padding: 0px 20px 20px 20px;
     gap: 5px;
+}
+
+/* ===========================
+   Estilos para o Modo Claro Equilibrado
+   =========================== */
+
+/* Fundo geral e cor dos textos */
+body.light-mode {
+    background-color: #EAE6DA;  /* Bege claro, mais suave que o branco puro */
+    color: #2C2C2C;            /* Texto escuro para boa legibilidade */
+}
+
+/* Tela total */
+#totalScreen.light-mode {
+    background-color: #EAE6DA;
+}
+
+/* Cabeçalho */
+body.light-mode header {
+    background-color: #5A8F7B;  /* Verde suave para um tom acolhedor */
+    color: #FFFFFF;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Botões de ícone */
+body.light-mode .iconBtn {
+    background-color: transparent;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+body.light-mode .iconBtn:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Sidebar (aside) */
+body.light-mode aside {
+    background-color: #D9D2C4;  /* Tom quente e suave para a barra lateral */
+    color: #2C2C2C;
+    padding: 10px;
+    box-shadow: inset -2px 0 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Menu da Sidebar */
+body.light-mode #menu {
+    background-color: #D9D2C4;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+/* Links */
+body.light-mode a {
+    text-decoration: none;
+    color: #2C2C2C;
+}
+
+/* Área principal (main) */
+body.light-mode main {
+    background-color: #F0EBE0; /* Fundo bege suave para leitura confortável */
+    padding: 15px;
+    gap: 10px;
+    overflow-y: auto;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Menu de tarefas */
+body.light-mode #menuTasks {
+    background-color: #C3B6A4; /* Contraste suave com o fundo principal */
+    color: #2C2C2C;
+    padding: 0 20px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 65px;
+    min-height: 65px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* Lista de tarefas */
+body.light-mode .task {
+    background-color: #F7F3E8;  /* Um tom suave de bege */
+    padding: 10px 25px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: background-color 0.2s, transform 0.2s;
+    color: #2C2C2C;
+}
+
+body.light-mode .task:hover {
+    background-color: #D3C7B8;
+    transform: translateX(5px);
+}
+
+/* Checkbox customizado */
+body.light-mode .task input[type="checkbox"] {
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border: 2px solid #2C2C2C;
+    border-radius: 50%;
+    background-color: #F7F3E8;
+    transition: background-color 0.2s, border-color 0.2s, transform 0.2s;
+    cursor: pointer;
+}
+
+body.light-mode .task input[type="checkbox"]:hover {
+    transform: scale(1.2);
+    border-color: #555555;
+}
+
+body.light-mode .task input[type="checkbox"]:checked {
+    background-color: #4CAF50;
+    border-color: #4CAF50;
+}
+
+/* Inputs das tarefas */
+body.light-mode #taskInput,
+body.light-mode .taskInput {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: #2C2C2C;
+}
+
+/* Linha divisória */
+body.light-mode hr {
+    border: none;
+    height: 2px;
+    background-color: #A69E8C;
+    margin: 2px 0;
+    width: 100%;
+}
+
+/* Menu de tarefas concluídas */
+body.light-mode #menuTasksComplete {
+    background-color: #C3B6A4;
+    color: #2C2C2C;
+    padding: 15px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    min-width: 160px;
+}
+
+/* Lista de tarefas concluídas */
+body.light-mode #completeTasks {
+    background-color: #F0EBE0;
+    padding: 0 20px 20px;
 }
