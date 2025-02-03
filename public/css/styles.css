@@ -41,7 +41,8 @@ header {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-#dateContainer, #userContainer {
+#dateContainer,
+#userContainer {
     display: flex;
     align-items: baseline;
     justify-content: flex-start;
@@ -69,7 +70,7 @@ aside {
     justify-content: center;
     padding: 10px 10px 0px 10px;
     background-color: #1A1A1A;
-    box-shadow: inset -2px 0 4px rgba(0,0,0,0.5);
+    box-shadow: inset -2px 0 4px rgba(0, 0, 0, 0.5);
 }
 
 #menu {
@@ -81,6 +82,12 @@ aside {
     align-items: flex-start;
     background-color: #1E1E1E;
     border-radius: 8px;
+}
+
+#menuHeader {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 ul {
@@ -111,7 +118,7 @@ main {
     overflow: auto;
     gap: 10px;
     background-color: #1F1F1F;
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 #menuTasks {
@@ -124,7 +131,7 @@ main {
     background-color: #272727;
     padding: 20px;
     border-radius: 20px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 #addTask h1 {
@@ -226,8 +233,25 @@ main {
     border: none;
     border-radius: 50px;
 }
+
 .iconBtn:hover {
     background-color: #333333;
+}
+
+#okIcon {
+    color: #F0F0F0;
+}
+
+#editIcon {
+    color: #F0F0F0;
+}
+
+#favoriteIcon {
+    color: #F0F0F0;
+}
+
+#removeIcon {
+    color: #FF0000;
 }
 
 hr {
@@ -254,7 +278,7 @@ hr {
     background-color: #272727;
     padding: 15px;
     border-radius: 20px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 #menuTasksComplete h4 {
@@ -279,8 +303,10 @@ hr {
 
 /* Fundo geral e cor dos textos */
 body.light-mode {
-    background-color: #EAE6DA;  /* Bege claro, mais suave que o branco puro */
-    color: #2C2C2C;            /* Texto escuro para boa legibilidade */
+    background-color: #EAE6DA;
+    /* Bege claro, mais suave que o branco puro */
+    color: #2C2C2C;
+    /* Texto escuro para boa legibilidade */
 }
 
 /* Tela total */
@@ -290,7 +316,8 @@ body.light-mode {
 
 /* Cabeçalho */
 body.light-mode header {
-    background-color: #5A8F7B;  /* Verde suave para um tom acolhedor */
+    background-color: #5A8F7B;
+    /* Verde suave para um tom acolhedor */
     color: #FFFFFF;
     padding: 10px 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -310,7 +337,8 @@ body.light-mode .iconBtn:hover {
 
 /* Sidebar (aside) */
 body.light-mode aside {
-    background-color: #D9D2C4;  /* Tom quente e suave para a barra lateral */
+    background-color: #D9D2C4;
+    /* Tom quente e suave para a barra lateral */
     color: #2C2C2C;
     padding: 10px;
     box-shadow: inset -2px 0 4px rgba(0, 0, 0, 0.1);
@@ -331,7 +359,8 @@ body.light-mode a {
 
 /* Área principal (main) */
 body.light-mode main {
-    background-color: #F0EBE0; /* Fundo bege suave para leitura confortável */
+    background-color: #F0EBE0;
+    /* Fundo bege suave para leitura confortável */
     padding: 15px;
     gap: 10px;
     overflow-y: auto;
@@ -340,7 +369,8 @@ body.light-mode main {
 
 /* Menu de tarefas */
 body.light-mode #menuTasks {
-    background-color: #C3B6A4; /* Contraste suave com o fundo principal */
+    background-color: #C3B6A4;
+    /* Contraste suave com o fundo principal */
     color: #2C2C2C;
     padding: 0 20px;
     border-radius: 20px;
@@ -354,7 +384,8 @@ body.light-mode #menuTasks {
 
 /* Lista de tarefas */
 body.light-mode .task {
-    background-color: #F7F3E8;  /* Um tom suave de bege */
+    background-color: #F7F3E8;
+    /* Um tom suave de bege */
     padding: 10px 25px;
     border-radius: 20px;
     display: flex;

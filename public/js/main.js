@@ -65,6 +65,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 editOkTaskBtn.classList.add('iconBtn');
                 const okIcon = document.createElement('i');
                 okIcon.classList.add('fa-solid', 'fa-check');
+                okIcon.id = 'okIcon';
                 editOkTaskBtn.appendChild(okIcon);
                 taskBox.appendChild(editOkTaskBtn);
                 editOkTaskBtn.style.display = 'none';
@@ -74,6 +75,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 editTaskBtn.classList.add('iconBtn');
                 const editIcon = document.createElement('i');
                 editIcon.classList.add('fa-solid', 'fa-pen');
+                editIcon.id = 'editIcon';
                 editTaskBtn.appendChild(editIcon);
                 taskBox.appendChild(editTaskBtn);
                 editTaskBtn.style.display = 'none';
@@ -84,6 +86,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 removeTaskBtn.classList.add('removeTaskBtn');
                 const removeIcon = document.createElement('i');
                 removeIcon.classList.add('fa-solid', 'fa-trash-can');
+                removeIcon.id = 'removeIcon';
                 removeTaskBtn.appendChild(removeIcon);
                 taskBox.appendChild(removeTaskBtn);
                 removeTaskBtn.style.display = 'none';
@@ -94,6 +97,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 favoriteTaskBtn.classList.add('favoriteTaskBtn');
                 const favoriteIcon = document.createElement('i');
                 favoriteIcon.classList.add('fa-regular', 'fa-star');
+                favoriteIcon.id = 'favoriteIcon';
                 favoriteTaskBtn.appendChild(favoriteIcon);
                 taskBox.appendChild(favoriteTaskBtn);
                 favoriteTaskBtn.style.display = 'none';
@@ -222,6 +226,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     } catch (error) {
         console.error("Erro ao carregar tarefas:", error);
+        tasksContainer.innerHTML = "<p>Erro ao carregar tarefas...</p>";
     }
 
     // Event delegation: escuta os eventos de mudança de checkbox
@@ -275,6 +280,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         okTaskBtn.classList.add('iconBtn');
         const okIcon = document.createElement('i');
         okIcon.classList.add('fa-solid', 'fa-check');
+        okIcon.id = 'okIcon';
         okTaskBtn.appendChild(okIcon);
         taskBox.appendChild(okTaskBtn);
 
@@ -283,6 +289,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         editTaskBtn.classList.add('iconBtn');
         const editIcon = document.createElement('i');
         editIcon.classList.add('fa-solid', 'fa-pen');
+        editIcon.id = 'editIcon';
         editTaskBtn.style.display = 'none';
         editTaskBtn.appendChild(editIcon);
         taskBox.appendChild(editTaskBtn);
@@ -293,6 +300,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         removeTaskBtn.classList.add('removeTaskBtn');
         const removeIcon = document.createElement('i');
         removeIcon.classList.add('fa-solid', 'fa-trash-can');
+        removeIcon.id = 'removeIcon';
         removeTaskBtn.appendChild(removeIcon);
         taskBox.appendChild(removeTaskBtn);
 
@@ -302,6 +310,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         favoriteTaskBtn.classList.add('favoriteTaskBtn');
         const favoriteIcon = document.createElement('i');
         favoriteIcon.classList.add('fa-regular', 'fa-star');
+        favoriteIcon.id = 'favoriteIcon';
         favoriteTaskBtn.appendChild(favoriteIcon);
         taskBox.appendChild(favoriteTaskBtn);
         favoriteTaskBtn.style.display = 'none';
