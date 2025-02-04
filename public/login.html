@@ -6,7 +6,7 @@
     <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
     <title>Login - Gerenciador de Tarefas - </title>
     <style>
-        body {
+        body, h1 {
             font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
             margin: 0;
             padding: 0;
@@ -25,18 +25,43 @@
         }
 
         #leftScreen {
-            background-color: #000000;
-            width: 50%;
+            background-color: #00002e;
+            width: 60%;
             height: 100%;
         }
 
+        #header {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            width: 100%;
+            height: 10%;
+            padding: 15px;
+        }
+
+        #header h1 {
+            font-weight: bold;
+            font-size: 25px;
+        }
+
+        #body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 90%;
+            font-size: 30px;
+            padding: 15px;
+        }
+
         #rightScreen {
-            background-color: grey;
-            width: 50%;
+            background-color: #000000;
+            width: 40%;
             height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: 0 0 10px 5px #000000;
         }
 
         #loginBox {
@@ -57,16 +82,17 @@
             align-items: center;
             width: 100%;
             height: 100%;
-            border: black 1px solid;
-            border-radius: 30px;
+            border-radius: 80px;
             gap: 30px;
             padding: 10px;
+            background-color: #00002e;
+            box-shadow: 0 0 10px 5px #00002e;
         }
 
         form {
             display: flex;
             flex-direction: column;
-            width: 40%;
+            width: 50%;
             height: auto;
             gap: 10px;
         }
@@ -79,6 +105,8 @@
             border-radius: 16px;
             padding: 7px 10px;
             border: none;
+            background-color: #ffffff1c;
+            color: #FFFFFF;
         }
 
         #submitBtn {
@@ -87,6 +115,17 @@
             border: none;
             cursor: pointer;
             margin-top: 30px;
+            background-color: #006ae7;
+            color: #FFFFFF;
+        }
+
+        #submitBtn:hover {
+            background-color: #0050b3;
+        }
+
+        #registerBtn {
+            color: #FFFFFF;
+            text-decoration: none;
         }
 
 
@@ -94,7 +133,10 @@
 </head>
 <body>
     <div id="totalScreen">
-        <div id="leftScreen"></div>
+        <div id="leftScreen">
+            <div id="header"><h1>Gerenciador de Tarefas</h1></div>
+            <div id="body"></div>
+        </div>
         <div id="rightScreen">
             <div id="loginBox">
                 <div id="login">
@@ -105,7 +147,7 @@
                         <input type="password" name="password" id="password" required>
                         <button type="submit" id="submitBtn">Entrar</button>
                     </form>
-                    <a href="register.html">Registrar</a>
+                    <a href="register.html" id="registerBtn">Registrar</a>
                 </div>
             </div>
         </div>
