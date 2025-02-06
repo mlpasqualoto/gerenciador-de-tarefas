@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const tasksContainer = document.getElementById("tasks");
     const completedTasksContainer = document.getElementById("completeTasks");
     const addTaskBtn = document.getElementById("addTask");
-    const token = localStorage.getItem("token"); // Pega o token do localStorage armazenado no navegador
+    const token = sessionStorage.getItem("token"); // Pega o token do localStorage armazenado no navegador
     const logoutBtn = document.getElementById("logoutBtn");
     const weekDayHeader = document.getElementById("weekDayHeader");
     const dateHeader = document.getElementById("dateHeader");
@@ -175,27 +175,36 @@ document.addEventListener('DOMContentLoaded', async () => {
                 });
 
                 // Favorita a tarefa
-                favoriteTaskBtn.addEventListener('click', async () => {
-                    // Altera a cor do ícone
-                    const icon = event.currentTarget.querySelector("i");
+                favoriteTaskBtn.addEventListener("click", async (event) => {
+                    event.preventDefault(); // Evita comportamento inesperado
+                    
+                    // Obtém o ícone dentro do botão corretamente
+                    const icon = favoriteTaskBtn.querySelector("i");
+                    if (!icon) return; // Se não houver ícone, não continua
+                
+                    // Alterna a classe do ícone
                     icon.classList.toggle("fa-regular");
                     icon.classList.toggle("fa-solid");
-
-                    // Mostra o botão de favoritar caso esteja favoritado
-                    if (icon.classList.contains("fa-solid")) {
-                        favoriteTaskBtn.style.display = "inline-block"; // Exibe o botão
-
-                        // Envia a tarefa para a API
-                        await reqApi.favoriteTask(token, inputTask.value, true);
-                    } else {
-                        favoriteTaskBtn.style.display = "none"; // Oculta o botão
-
-                        // Envia a tarefa para a API
-                        await reqApi.favoriteTask(token, inputTask.value, false);
+                
+                    // Verifica se a tarefa foi favoritada
+                    const isFavorited = icon.classList.contains("fa-solid");
+                
+                    // Envia a atualização para a API
+                    await reqApi.favoriteTask(token, inputTask.value, isFavorited);
+                
+                    // Verifica se o evento foi acionado por um checkbox dentro de uma tarefa
+                    if (event.target.matches(".task input[type='checkbox']")) {
+                        const checkbox = event.target;
+                        const taskBox = checkbox.closest(".task");
+                
+                        if (checkbox.checked) {
+                            // Move para o topo da seção de tarefas concluídas
+                            completedTasksContainer.prepend(taskBox);
+                        } else {
+                            // Move para o topo da seção de tarefas pendentes
+                            tasksContainer.prepend(taskBox);
+                        }
                     }
-
-                    // Move a tarefa para o topo da lista
-                    tasksContainer.prepend(taskBox);
                 });
 
                 // Verifica se a tarefa está favoritada
@@ -234,6 +243,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (event.target.matches(".task input[type='checkbox']")) {
             const checkbox = event.target;
             const task = checkbox.closest(".task");
+            const favoriteTaskBtn = task.querySelector(".favoriteTaskBtn");
 
             if (checkbox.checked) {
                 // Move para a seção de tarefas concluídas
@@ -251,6 +261,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
 
+    // Adiciona uma nova tarefa
     function addRemoveTask() {
         // ** Cria a caixa da tarefa e os botões **
 
@@ -401,28 +412,37 @@ document.addEventListener('DOMContentLoaded', async () => {
         });	
 
         // Favorita a tarefa
-        favoriteTaskBtn.addEventListener('click', async () => {
-            // Altera a cor do ícone
-            const icon = event.currentTarget.querySelector("i");
+        favoriteTaskBtn.addEventListener("click", async (event) => {
+            event.preventDefault(); // Evita comportamento inesperado
+            
+            // Obtém o ícone dentro do botão corretamente
+            const icon = favoriteTaskBtn.querySelector("i");
+            if (!icon) return; // Se não houver ícone, não continua
+        
+            // Alterna a classe do ícone
             icon.classList.toggle("fa-regular");
             icon.classList.toggle("fa-solid");
-
-            // Mostra o botão de favoritar caso esteja favoritado
-            if (icon.classList.contains("fa-solid")) {
-                favoriteTaskBtn.style.display = "inline-block"; // Exibe o botão
-
-                // Envia a tarefa para a API
-                await reqApi.favoriteTask(token, inputTask.value, true);
-            } else {
-                favoriteTaskBtn.style.display = "none"; // Oculta o botão
-
-                // Envia a tarefa para a API
-                await reqApi.favoriteTask(token, inputTask.value, false);
+        
+            // Verifica se a tarefa foi favoritada
+            const isFavorited = icon.classList.contains("fa-solid");
+        
+            // Envia a atualização para a API
+            await reqApi.favoriteTask(token, inputTask.value, isFavorited);
+        
+            // Verifica se o evento foi acionado por um checkbox dentro de uma tarefa
+            if (event.target.matches(".task input[type='checkbox']")) {
+                const checkbox = event.target;
+                const taskBox = checkbox.closest(".task");
+        
+                if (checkbox.checked) {
+                    // Move para o topo da seção de tarefas concluídas
+                    completedTasksContainer.prepend(taskBox);
+                } else {
+                    // Move para o topo da seção de tarefas pendentes
+                    tasksContainer.prepend(taskBox);
+                }
             }
-
-            // Move a tarefa para o topo da lista
-            tasksContainer.prepend(taskBox);
-        });
+        });        
     };
 
     addTaskBtn.addEventListener('click', () => {
