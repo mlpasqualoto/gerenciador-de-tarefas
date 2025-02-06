@@ -195,7 +195,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                     // Verifica se o evento foi acionado por um checkbox dentro de uma tarefa
                     if (event.target.matches(".task input[type='checkbox']")) {
                         const checkbox = event.target;
-                        const taskBox = checkbox.closest(".task");
                 
                         if (checkbox.checked) {
                             // Move para o topo da seção de tarefas concluídas
@@ -432,7 +431,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Verifica se o evento foi acionado por um checkbox dentro de uma tarefa
             if (event.target.matches(".task input[type='checkbox']")) {
                 const checkbox = event.target;
-                const taskBox = checkbox.closest(".task");
         
                 if (checkbox.checked) {
                     // Move para o topo da seção de tarefas concluídas

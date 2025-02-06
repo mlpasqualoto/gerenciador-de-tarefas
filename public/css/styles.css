@@ -11,6 +11,7 @@ p {
 
 * {
     box-sizing: border-box;
+    color: #a392ca;
 }
 
 button {
@@ -33,12 +34,12 @@ button:active {
 header {
     height: 7%;
     min-height: 7%;
-    background-color: #121212;
+    background-color: #000000;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 10px 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 2px 4px rgba(163, 146, 202, 0.3);
 }
 
 #dateContainer,
@@ -49,6 +50,10 @@ header {
     width: auto;
     height: auto;
     gap: 5px;
+}
+
+#weekDayHeader, #dateHeader {
+    color: #a392ca;
 }
 
 #logoutBtn:hover {
@@ -75,6 +80,7 @@ header {
     margin-top: 5px;
     opacity: 0;
     transition: opacity 0.3s;
+    box-shadow: 0 2px 4px rgba(163, 146, 202, 0.3);
 }
 
 .tooltipBtn:hover .tooltipText {
@@ -97,8 +103,8 @@ aside {
     align-items: center;
     justify-content: center;
     padding: 10px 10px 0px 10px;
-    background-color: #1A1A1A;
-    box-shadow: inset -2px 0 4px rgba(0, 0, 0, 0.5);
+    background-color: #1F1F1F;
+    box-shadow: inset -2px 0 4px rgba(163, 146, 202, 0.3);
 }
 
 #menu {
@@ -108,7 +114,7 @@ aside {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    background-color: #1E1E1E;
+    background-color: #000000;
     border-radius: 8px;
 }
 
@@ -146,7 +152,7 @@ main {
     overflow: auto;
     gap: 10px;
     background-color: #1F1F1F;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 2px 4px rgba(163, 146, 202, 0.3);
 }
 
 #menuTasks {
@@ -159,7 +165,7 @@ main {
     background-color: #272727;
     padding: 20px;
     border-radius: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 2px 4px rgba(163, 146, 202, 0.25);
 }
 
 #addTask h1 {
@@ -178,6 +184,11 @@ main {
     gap: 5px;
 }
 
+#tasks p {
+    color: #F0F0F0;
+    background-color: transparent;
+}
+
 .task {
     display: flex;
     align-items: center;
@@ -190,6 +201,7 @@ main {
     border: none;
     background-color: #2B2B2B;
     transition: background-color 0.2s, transform 0.2s;
+    box-shadow: 0 2px 4px rgba(163, 146, 202, 0.25);
 }
 
 .task:hover {
@@ -224,9 +236,9 @@ main {
 }
 
 .task input[type="checkbox"]:checked {
-    background-color: #4CAF50;
+    background-color: #a392ca;
     /* Cor de fundo ao marcar */
-    border-color: #4caf50;
+    border-color: #a392ca;
     /* Cor da borda ao marcar */
 }
 
@@ -306,7 +318,7 @@ hr {
     background-color: #272727;
     padding: 15px;
     border-radius: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 2px 4px rgba(163, 146, 202, 0.25);
 }
 
 #menuTasksComplete h4 {
@@ -326,163 +338,82 @@ hr {
 }
 
 /* ===========================
-   Estilos para o Modo Claro Equilibrado
+   Modo Claro Finalizado
    =========================== */
 
-/* Fundo geral e cor dos textos */
-body.light-mode {
-    background-color: #EAE6DA;
-    /* Bege claro, mais suave que o branco puro */
-    color: #2C2C2C;
-    /* Texto escuro para boa legibilidade */
+   body.light-mode {
+    background-color: #f0f0fa; /* Antigo #fafaff */
+    color: #2d2d45;
 }
 
-/* Tela total */
 #totalScreen.light-mode {
-    background-color: #EAE6DA;
+    background-color: #f0f0fa;
 }
 
-/* Cabeçalho */
-body.light-mode header {
-    background-color: #5A8F7B;
-    /* Verde suave para um tom acolhedor */
-    color: #FFFFFF;
-    padding: 10px 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-/* Botões de ícone */
-body.light-mode .iconBtn {
-    background-color: transparent;
-    border: none;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-
-body.light-mode .iconBtn:hover {
-    background-color: rgba(0, 0, 0, 0.1);
-}
-
-/* Sidebar (aside) */
+/* Barra lateral e menu */
 body.light-mode aside {
-    background-color: #D9D2C4;
-    /* Tom quente e suave para a barra lateral */
-    color: #2C2C2C;
-    padding: 10px;
-    box-shadow: inset -2px 0 4px rgba(0, 0, 0, 0.1);
+    background-color: #e8e8f5; /* Antigo #f0f0fa */
 }
 
-/* Menu da Sidebar */
 body.light-mode #menu {
-    background-color: #D9D2C4;
-    padding: 15px;
-    border-radius: 8px;
+    background-color: #ececf9; /* Antigo #f5f5ff */
+    border: 1px solid #d8d8e6; /* Aumentado contraste */
 }
 
-/* Links */
 body.light-mode a {
-    text-decoration: none;
-    color: #2C2C2C;
+    color: #43436b; /* Antigo #3d3d5c */
 }
 
-/* Área principal (main) */
+/* Conteúdo principal */
 body.light-mode main {
-    background-color: #F0EBE0;
-    /* Fundo bege suave para leitura confortável */
-    padding: 15px;
-    gap: 10px;
-    overflow-y: auto;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #f8f8ff; /* Antigo #ffffff */
 }
 
-/* Menu de tarefas */
+/* Elementos interativos */
 body.light-mode #menuTasks {
-    background-color: #C3B6A4;
-    /* Contraste suave com o fundo principal */
-    color: #2C2C2C;
-    padding: 0 20px;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 65px;
-    min-height: 65px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    background-color: #f3f3ff; /* Antigo #f8f8ff */
 }
 
-/* Lista de tarefas */
+body.light-mode #tasks, p {
+    background-color: #f8f8ff;
+    color: #43436b;
+}
+
 body.light-mode .task {
-    background-color: #F7F3E8;
-    /* Um tom suave de bege */
-    padding: 10px 25px;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    transition: background-color 0.2s, transform 0.2s;
-    color: #2C2C2C;
+    background-color: #fcfcff; /* Antigo #ffffff */
+    border: 1px solid #e3e3f1; /* Aumentado contraste */
 }
 
-body.light-mode .task:hover {
-    background-color: #D3C7B8;
-    transform: translateX(5px);
-}
-
-/* Checkbox customizado */
-body.light-mode .task input[type="checkbox"] {
-    appearance: none;
-    width: 15px;
-    height: 15px;
-    border: 2px solid #2C2C2C;
-    border-radius: 50%;
-    background-color: #F7F3E8;
-    transition: background-color 0.2s, border-color 0.2s, transform 0.2s;
-    cursor: pointer;
-}
-
-body.light-mode .task input[type="checkbox"]:hover {
-    transform: scale(1.2);
-    border-color: #555555;
-}
-
-body.light-mode .task input[type="checkbox"]:checked {
-    background-color: #4CAF50;
-    border-color: #4CAF50;
-}
-
-/* Inputs das tarefas */
-body.light-mode #taskInput,
-body.light-mode .taskInput {
-    background-color: transparent;
-    border: none;
-    outline: none;
-    color: #2C2C2C;
-}
-
-/* Linha divisória */
-body.light-mode hr {
-    border: none;
-    height: 2px;
-    background-color: #A69E8C;
-    margin: 2px 0;
-    width: 100%;
-}
-
-/* Menu de tarefas concluídas */
+/* Tarefas completas */
 body.light-mode #menuTasksComplete {
-    background-color: #C3B6A4;
-    color: #2C2C2C;
-    padding: 15px;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
-    min-width: 160px;
+    background-color: #ececf9; /* Antigo #F8F7FC */
 }
 
-/* Lista de tarefas concluídas */
 body.light-mode #completeTasks {
-    background-color: #F0EBE0;
-    padding: 0 20px 20px;
+    background-color: #f8f8ff; /* Antigo #ffffff */
+}
+
+/* Ajustes de neutros */
+body.light-mode hr {
+    background-color: #dcdceb; /* Antigo #e6e6f2 */
+}
+
+/* Novas adições para profundidade */
+body.light-mode .task:hover {
+    background-color: #f5f5ff; /* Camada intermediária */
+}
+
+body.light-mode ::-webkit-scrollbar-thumb {
+    background-color: #d4d4e8; /* Scrollbar harmonizada */
+}
+
+/* Ajuste de contraste para texto */
+body.light-mode {
+    color: #363656; /* Antigo #2d2d45 - leve escurecimento */
+}
+
+body.light-mode h1,
+body.light-mode h2,
+body.light-mode #addTask h1 {
+    color: #43436b; /* Antigo #3d3d5c */
 }
