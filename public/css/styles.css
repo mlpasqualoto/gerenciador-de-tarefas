@@ -384,6 +384,42 @@ body.light-mode .task {
     border: 1px solid #e3e3f1; /* Aumentado contraste */
 }
 
+body.light-mode .taskInput {
+    color: #43436b;
+}
+
+body.light-mode .task input[type="checkbox"] {
+    /* Remove os estilos padrão */
+    -webkit-appearance: none;
+    /* Para navegadores baseados em WebKit */
+    -moz-appearance: none;
+    /* Para navegadores Firefox */
+    appearance: none;
+
+    /* Personalização */
+    width: 15px;
+    min-width: 15px;
+    height: 15px;
+    border: 2px solid #F0F0F0;
+    border-radius: 50%;
+    /* Torna as bordas arredondadas */
+    cursor: pointer;
+    outline: none;
+
+    /* Cor de fundo */
+    background-color: #c5c5d3;
+
+    /* Estilo ao passar o mouse */
+    transition: background-color 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+body.light-mode .task input[type="checkbox"]:checked {
+    background-color: #a392ca;
+    /* Cor de fundo ao marcar */
+    border-color: #a392ca;
+    /* Cor da borda ao marcar */
+}
+
 /* Tarefas completas */
 body.light-mode #menuTasksComplete {
     background-color: #ececf9; /* Antigo #F8F7FC */
