@@ -185,18 +185,31 @@
         document.addEventListener('DOMContentLoaded', () => {
             const submitBtn = document.getElementById('submitBtn');
             const form = document.querySelector('form');
+            const errorMessage = document.getElementById('errorAlertMessage');
+            errorMessage.textContent = "";
 
             submitBtn.addEventListener('click', async (e) => {
                 e.preventDefault();
                 const name = document.getElementById('name').value.trim();
                 const email = document.getElementById('email').value.trim();
-                const password = document.getElementById('password').value.trim();
-                const confirmPassword = document.getElementById('confirmPassword').value.trim();
-                const errorMessage = document.getElementById('errorAlertMessage');
-                errorMessage.textContent = "";
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+
+                // Verifica se os campos estão preenchidos
+                if (!name || !password || !email || !confirmPassword) {
+                    errorMessage.textContent = "Erro, preencha todos os campos!";
+                    return;
+                }
                 
+                // Verifica se as senhas coincidem
                 if (password !== confirmPassword) {
                     errorMessage.textContent = "Erro, as senhas não coincidem!";
+                    return;
+                }
+
+                // Verifica se a senha tem no mínimo 6 caracteres
+                if (password.length < 6) {
+                    errorMessage.textContent = "Erro, a senha deve ter no mínimo 6 caracteres!";
                     return;
                 }
 

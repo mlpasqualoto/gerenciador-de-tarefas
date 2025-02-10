@@ -217,16 +217,23 @@
         document.addEventListener('DOMContentLoaded', () => {
             const submitBtn = document.getElementById('submitBtn');
             const loading = document.getElementById('loading');
+            const errorMessage = document.getElementById('errorAlertMessage');
+            errorMessage.textContent = "";
             
             submitBtn.addEventListener('click', (e) => {
                 e.preventDefault();
                 const name = document.getElementById('name').value.trim();
-                const password = document.getElementById('password').value.trim();
-                const errorMessage = document.getElementById('errorAlertMessage');
-                errorMessage.textContent = "";
-
+                const password = document.getElementById('password').value;
+                
+                // Verifica se os campos estão preenchidos
                 if (!name || !password) {
                     errorMessage.textContent = "Erro, preencha todos os campos!";
+                    return;
+                }
+
+                // Verifica se a senha tem no mínimo 6 caracteres
+                if (password.length < 6) {
+                    errorMessage.textContent = "Erro, a senha deve ter no mínimo 6 caracteres!";
                     return;
                 }
                 
