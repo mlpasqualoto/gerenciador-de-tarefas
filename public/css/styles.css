@@ -278,15 +278,7 @@ main {
     background-color: #333333;
 }
 
-#okIcon {
-    color: #F0F0F0;
-}
-
-#editIcon {
-    color: #F0F0F0;
-}
-
-#favoriteIcon {
+#okIcon, #editIcon, #favoriteIcon {
     color: #F0F0F0;
 }
 
@@ -418,6 +410,10 @@ body.light-mode .task input[type="checkbox"]:checked {
     /* Cor de fundo ao marcar */
     border-color: #a392ca;
     /* Cor da borda ao marcar */
+}
+
+body.light-mode #okIcon, #editIcon, #favoriteIcon {
+    color: #43436b;
 }
 
 /* Tarefas completas */
