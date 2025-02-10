@@ -11,5 +11,5 @@ app.use(express.json());
 routes(app);
 
 app.listen(PORT, () => {
-    console.log(`Server is running on http://192.168.25.193:${PORT}`);
+    console.log(`Server is running on http://localhost:${PORT}`);
 });

@@ -1,8 +1,7 @@
 body,
 html,
 h1,
-h2,
-p {
+h2 {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     margin: 0;
     padding: 0;
@@ -52,7 +51,8 @@ header {
     gap: 5px;
 }
 
-#weekDayHeader, #dateHeader {
+#weekDayHeader,
+#dateHeader {
     color: #a392ca;
 }
 
@@ -86,7 +86,8 @@ header {
 .tooltipBtn:hover .tooltipText {
     visibility: visible;
     opacity: 1;
-    transition-delay: 1s; /* Tempo de espera antes de exibir (0.5s = meio segundo) */
+    transition-delay: 1s;
+    /* Tempo de espera antes de exibir (0.5s = meio segundo) */
 }
 
 /* Corpo */
@@ -114,7 +115,7 @@ aside {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    background-color: #00000042;
+    background-color: #0808082c;
     border-radius: 8px;
 }
 
@@ -276,10 +277,18 @@ main {
 }
 
 .iconBtn:hover {
-    background-color: #33333325;
+    background-color: #333333;
 }
 
-#okIcon, #editIcon, #favoriteIcon {
+#okIcon {
+    color: #F0F0F0;
+}
+
+#editIcon {
+    color: #F0F0F0;
+}
+
+#favoriteIcon {
     color: #F0F0F0;
 }
 
@@ -330,12 +339,53 @@ hr {
     gap: 5px;
 }
 
+/* Loader */
+#loading {
+    position: fixed;
+    /* Fixa o elemento na tela inteira */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100dvh;
+    background-color: rgba(0, 0, 0, 0.8);
+    /* Fundo escuro com transparência */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    /* Garante que fique acima de outros elementos */
+    color: #a392ca;
+    /* Cor do texto e ícone, combinando com o seu tema */
+    font-size: 1.5rem;
+    /* Tamanho do texto */
+}
+
+#loading i {
+    margin-right: 10px;
+    /* Espaçamento entre o ícone e o texto */
+    font-size: 2rem;
+    /* Tamanho do ícone */
+    animation: spin 1s linear infinite;
+    /* Animação de rotação */
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 /* ===========================
-   Modo Claro Finalizado
+            Modo Claro
    =========================== */
 
-   body.light-mode {
-    background-color: #f0f0fa; /* Antigo #fafaff */
+body.light-mode {
+    background-color: #f0f0fa;
+    /* Antigo #fafaff */
     color: #2d2d45;
 }
 
@@ -343,42 +393,55 @@ hr {
     background-color: #f0f0fa;
 }
 
+body.light-mode #vsModeBtn:hover,
+#logoutBtn:hover {
+    background-color: #3A3A3A;
+}
+
+body.light-mode p {
+    color: #a392ca;
+}
+
 /* Barra lateral e menu */
 body.light-mode aside {
-    background-color: #e8e8f5; /* Antigo #f0f0fa */
+    background-color: #e8e8f5;
+    /* Antigo #f0f0fa */
 }
 
 body.light-mode #menu {
-    background-color: #ececf9; /* Antigo #f5f5ff */
-    border: 1px solid #d8d8e6; /* Aumentado contraste */
+    background-color: #ececf9;
+    /* Antigo #f5f5ff */
+    border: 1px solid #d8d8e6;
+    /* Aumentado contraste */
 }
 
 body.light-mode a {
-    color: #43436b; /* Antigo #3d3d5c */
+    color: #43436b;
+    /* Antigo #3d3d5c */
 }
 
 /* Conteúdo principal */
 body.light-mode main {
-    background-color: #f8f8ff; /* Antigo #ffffff */
+    background-color: #f8f8ff;
+    /* Antigo #ffffff */
 }
 
 /* Elementos interativos */
 body.light-mode #menuTasks {
-    background-color: #f3f3ff; /* Antigo #f8f8ff */
+    background-color: #f3f3ff;
+    /* Antigo #f8f8ff */
 }
 
-body.light-mode #tasks, p {
+body.light-mode #tasks {
     background-color: #f8f8ff;
     color: #43436b;
 }
 
 body.light-mode .task {
-    background-color: #fcfcff; /* Antigo #ffffff */
-    border: 1px solid #e3e3f1; /* Aumentado contraste */
-}
-
-body.light-mode .taskInput {
-    color: #43436b;
+    background-color: #fcfcff;
+    /* Antigo #ffffff */
+    border: 1px solid #e3e3f1;
+    /* Aumentado contraste */
 }
 
 body.light-mode .task input[type="checkbox"] {
@@ -400,7 +463,7 @@ body.light-mode .task input[type="checkbox"] {
     outline: none;
 
     /* Cor de fundo */
-    background-color: #c5c5d3;
+    background-color: #f0f0fa;
 
     /* Estilo ao passar o mouse */
     transition: background-color 0.2s, border-color 0.2s, transform 0.2s;
@@ -413,40 +476,107 @@ body.light-mode .task input[type="checkbox"]:checked {
     /* Cor da borda ao marcar */
 }
 
-body.light-mode #okIcon, #editIcon, #favoriteIcon {
+body.light-mode .taskInput {
     color: #43436b;
+    /* Antigo #3d3d5c */
+}
+
+body.light-mode .iconBtn:hover {
+    background-color: #ececf9;
+}
+
+body.light-mode #okIcon {
+    color: #a392ca;
+}
+
+body.light-mode #editIcon {
+    color: #a392ca;
+}
+
+body.light-mode #favoriteIcon {
+    color: #a392ca;
 }
 
 /* Tarefas completas */
 body.light-mode #menuTasksComplete {
-    background-color: #ececf9; /* Antigo #F8F7FC */
+    background-color: #ececf9;
+    /* Antigo #F8F7FC */
 }
 
 body.light-mode #completeTasks {
-    background-color: #f8f8ff; /* Antigo #ffffff */
+    background-color: #f8f8ff;
+    /* Antigo #ffffff */
 }
 
 /* Ajustes de neutros */
 body.light-mode hr {
-    background-color: #dcdceb; /* Antigo #e6e6f2 */
+    background-color: #dcdceb;
+    /* Antigo #e6e6f2 */
 }
 
 /* Novas adições para profundidade */
 body.light-mode .task:hover {
-    background-color: #f5f5ff; /* Camada intermediária */
+    background-color: #f5f5ff;
+    /* Camada intermediária */
 }
 
 body.light-mode ::-webkit-scrollbar-thumb {
-    background-color: #d4d4e8; /* Scrollbar harmonizada */
+    background-color: #d4d4e8;
+    /* Scrollbar harmonizada */
 }
 
 /* Ajuste de contraste para texto */
 body.light-mode {
-    color: #363656; /* Antigo #2d2d45 - leve escurecimento */
+    color: #363656;
+    /* Antigo #2d2d45 - leve escurecimento */
 }
 
 body.light-mode h1,
 body.light-mode h2,
 body.light-mode #addTask h1 {
-    color: #43436b; /* Antigo #3d3d5c */
+    color: #43436b;
+    /* Antigo #3d3d5c */
+}
+
+/* Loader */
+body.light-mode #loading {
+    position: fixed;
+    /* Fixa o elemento na tela inteira */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100dvh;
+    background-color: rgba(0, 0, 0, 0.8);
+    /* Fundo escuro com transparência */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    /* Garante que fique acima de outros elementos */
+    color: #a392ca;
+    /* Cor do texto e ícone, combinando com o seu tema */
+    font-size: 1.5rem;
+    /* Tamanho do texto */
+}
+
+body.light-mode #loading i {
+    margin-right: 10px;
+    /* Espaçamento entre o ícone e o texto */
+    font-size: 2rem;
+    /* Tamanho do ícone */
+    animation: spin 1s linear infinite;
+    /* Animação de rotação */
+}
+
+/* Ajustes específicos para o light mode */
+body.light-mode #loading {
+    background-color: rgba(255, 255, 255, 0.9);
+    /* Fundo branco com transparência */
+    color: #00002e;
+    /* Texto escuro para contraste */
+}
+
+body.light-mode #loading i {
+    color: #00002e;
+    /* Ícone escuro para contraste */
 }

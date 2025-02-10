@@ -9,10 +9,19 @@ document.addEventListener('DOMContentLoaded', async () => {
     const weekDayHeader = document.getElementById("weekDayHeader");
     const dateHeader = document.getElementById("dateHeader");
     const vsBtn = document.getElementById("vsModeBtn");
+    const loading = document.getElementById("loading"); // Elemento de carregamento
+    const iconBtn = document.getElementById("iconBtn");
+
+    // Light/Dark mode (verifica qual tema está salvo no localStorage)
+    iconBtn.classList.add("fa-regular");
+    if (localStorage.getItem("theme") === "light") {
+        document.body.classList.add("light-mode");
+        iconBtn.classList.remove("fa-regular");
+        iconBtn.classList.add("fa-solid");
+    }
 
     // Light/Dark mode
     vsBtn.addEventListener('click', () => {
-        const iconBtn = document.getElementById("iconBtn");
         iconBtn.classList.toggle("fa-regular");
         iconBtn.classList.toggle("fa-solid");
 
@@ -27,8 +36,17 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Logout
     logoutBtn.addEventListener('click', () => {
-        localStorage.removeItem("token");
-        window.location.href = "login.html";
+        loading.style.display = "flex"; // Exibe o carregamento
+        loading.style.backgroundColor = document.body.classList.contains("light-mode") 
+            ? "rgba(255, 255, 255, 0.9)" 
+            : "rgba(0, 0, 0, 0.8)";
+        
+        sessionStorage.removeItem("token");
+
+        // Redireciona para a página de login após 1 segundo
+        setTimeout(() => {
+            window.location.href = "login.html";
+        }, 500); // Tempo de espera para exibir o carregamento
     });
 
     // Data atual
