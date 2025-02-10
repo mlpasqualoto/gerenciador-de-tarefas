@@ -97,6 +97,21 @@
             box-shadow: 0 0 10px 5px #00002e;
         }
 
+        #errorAlert {
+            width: 100%;
+            height: auto;
+            background-color: transparent;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #errorAlertMessage {
+            color: #ff0000;
+            margin: 0;
+            font-size: 15px;
+        }
+
         form {
             display: flex;
             flex-direction: column;
@@ -178,6 +193,7 @@
         <div id="rightScreen">
             <div id="loginBox">
                 <div id="login">
+                    <div id="errorAlert"><p id="errorAlertMessage"></p></div>
                     <form action="">
                         <label for="name">Usuário</label>
                         <input type="text" name="name" id="name" required>
@@ -204,9 +220,16 @@
             
             submitBtn.addEventListener('click', (e) => {
                 e.preventDefault();
-                const name = document.getElementById('name').value;
-                const password = document.getElementById('password').value;
+                const name = document.getElementById('name').value.trim();
+                const password = document.getElementById('password').value.trim();
+                const errorMessage = document.getElementById('errorAlertMessage');
+                errorMessage.textContent = "";
 
+                if (!name || !password) {
+                    errorMessage.textContent = "Erro, preencha todos os campos!";
+                    return;
+                }
+                
                 // Mostra o loader
                 loading.style.display = "flex";
 

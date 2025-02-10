@@ -114,7 +114,7 @@ aside {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    background-color: #000000;
+    background-color: #00000042;
     border-radius: 8px;
 }
 
@@ -262,10 +262,11 @@ main {
     border: none;
     background-color: transparent;
     color: #F0F0F0;
+    cursor: text;
 }
 
 .taskInput:hover {
-    cursor: pointer;
+    cursor: text;
 }
 
 .iconBtn {
@@ -275,7 +276,7 @@ main {
 }
 
 .iconBtn:hover {
-    background-color: #333333;
+    background-color: #33333325;
 }
 
 #okIcon, #editIcon, #favoriteIcon {

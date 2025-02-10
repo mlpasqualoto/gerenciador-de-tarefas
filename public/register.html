@@ -96,6 +96,21 @@
             box-shadow: 0 0 10px 5px #00002e;
         }
 
+        #errorAlert {
+            width: 100%;
+            height: auto;
+            background-color: transparent;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #errorAlertMessage {
+            color: #ff0000;
+            margin: 0;
+            font-size: 15px;
+        }
+
         form {
             display: flex;
             flex-direction: column;
@@ -147,6 +162,7 @@
         <div id="rightScreen">
             <div id="loginBox">
                 <div id="login">
+                    <div id="errorAlert"><p id="errorAlertMessage"></p></div>
                     <form action="">
                         <label for="name">Usuário</label>
                         <input type="text" name="name" id="name" required>
@@ -172,13 +188,15 @@
 
             submitBtn.addEventListener('click', async (e) => {
                 e.preventDefault();
-                const name = document.getElementById('name').value;
-                const email = document.getElementById('email').value;
-                const password = document.getElementById('password').value;
-                const confirmPassword = document.getElementById('confirmPassword').value;
-
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const password = document.getElementById('password').value.trim();
+                const confirmPassword = document.getElementById('confirmPassword').value.trim();
+                const errorMessage = document.getElementById('errorAlertMessage');
+                errorMessage.textContent = "";
+                
                 if (password !== confirmPassword) {
-                    alert('As senhas não coincidem');
+                    errorMessage.textContent = "Erro, as senhas não coincidem!";
                     return;
                 }
 
